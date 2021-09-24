@@ -1,0 +1,70 @@
+
+.full-width{
+    width: 80%;
+}
+
+.top-padding{
+    padding-top: 3px;
+}
+
+.margin-left mat-checkbox:not(:first-child){
+    margin-left:10px;
+}
+
+.form-container{
+    margin: 8%;
+}
+
+.img-in {
+    width: 10rem;
+    height: auto;
+    float:right;
+}
+
+.img-out {
+    width: 10rem;
+    height: auto;
+    display: none;
+    padding-left: 40%;
+}
+
+div {
+    padding-left: 2%;
+}
+
+@media screen and (max-width:1282px) {  
+    .img-in {
+      display: none;
+    }
+
+    .img-out {
+        display: block;
+    }
+
+    .full-width{
+        width: 100%;
+    }
+  }
+
+  @media screen and (max-width:725px) {
+    .img-out {
+        padding-left: 30%;
+    }
+  }
+
+  @media screen and (max-width:420px) {  
+    .full-width{
+        width: 100%;
+    }
+
+    .form-container{
+        width: 80%;
+        height: auto;
+    }
+  }
+
+  @media screen and (max-width:360px) {
+      .img-out {
+          width: 40%;
+      }
+  }

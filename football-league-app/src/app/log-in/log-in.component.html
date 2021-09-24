@@ -1,1 +1,36 @@
-<p>log-in works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title style="margin-left: 1.5rem; margin-top: 1.2rem;">Log In</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <img class="img-in" src="https://cdn-icons-png.flaticon.com/512/2817/2817774.png" alt="image">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <input formControlName="email" matInput placeholder="Email" type="email">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="full-width">
+                        <input formControlName="password" matInput placeholder="Password" type="password">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-checkbox formControlName="rememberMe" labelPosition="before">
+                        Remember Me
+                    </mat-checkbox>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button type="submit" style="margin-left: 4%; margin-bottom: 3%;" mat-raised-button color="primary">Log In</button>
+          </mat-card-actions>
+    </mat-card>
+</form>
+<img class="img-out" src="https://cdn-icons-png.flaticon.com/512/2817/2817774.png" alt="image">
