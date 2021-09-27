@@ -19,10 +19,10 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { ProfileComponent } from './profile/profile.component';
-import { LeagueTableComponent } from './league-table/league-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { LeagueTableComponent } from './league-table/league-table.component'
 
 @NgModule({
   declarations: [

@@ -9,6 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -22,6 +25,9 @@ const MaterialComponents = [
   ReactiveFormsModule,
   MatCardModule,
   MatCheckboxModule,
+  MatTableModule,
+  MatSortModule,
+  MatTabsModule,
 ]
 
 @NgModule({
