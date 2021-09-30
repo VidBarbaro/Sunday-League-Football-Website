@@ -23,6 +23,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { LeagueTableComponent } from './league-table/league-table.component'
+import { NgxEchartsModule } from 'ngx-echarts';
+
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { LeagueTableComponent } from './league-table/league-table.component'
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    NgxEchartsModule.forRoot({ echarts: () => import('echarts'),}),
   ],
   providers: [],
   bootstrap: [AppComponent]

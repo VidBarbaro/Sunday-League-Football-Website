@@ -1,0 +1,33 @@
+div {
+ text-align: center;
+}
+
+h1 {
+    padding-top: 3%;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    height: 400px;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    margin: 4% auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.box {
+    width: 100%;
+    align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
