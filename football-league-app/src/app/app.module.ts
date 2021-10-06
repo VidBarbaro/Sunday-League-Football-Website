@@ -24,7 +24,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { LeagueTableComponent } from './league-table/league-table.component'
 import { NgxEchartsModule } from 'ngx-echarts';
-
+import { AdminComponent } from './admin/admin.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PlayersComponent } from './admin/players/players.component';
+import { ManagersComponent } from './admin/managers/managers.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { NgxEchartsModule } from 'ngx-echarts';
     LogInComponent,
     ProfileComponent,
     LeagueTableComponent,
+    AdminComponent,
+    PlayersComponent,
+    ManagersComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +58,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
+    HttpClientModule,
     MatSortModule,
     NgxEchartsModule.forRoot({ echarts: () => import('echarts'),}),
   ],

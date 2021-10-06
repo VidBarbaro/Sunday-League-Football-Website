@@ -3,6 +3,7 @@ package com.example.individualproject.controller;
 import com.example.individualproject.model.TeamManager;
 import com.example.individualproject.model.Club;
 import com.example.individualproject.repository.FakeDataStore;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +32,12 @@ public class TeamManagerController {
         List<TeamManager> teamManagers = null;
         // if a player is added, use that method from the fakedatastore
         teamManagers = fakeDataStore.getTeamManagers();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Access-Control-Allow-Origin",
+                "http://localhost:4200");
 
         if(teamManagers != null) {
-            return ResponseEntity.ok().body(teamManagers);
+            return ResponseEntity.ok().headers(responseHeaders).body(teamManagers);
         } else {
             return ResponseEntity.notFound().build();
         }
