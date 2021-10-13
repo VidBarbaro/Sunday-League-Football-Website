@@ -19,7 +19,7 @@ export class ManagersComponent implements OnInit {
   dataSource!: MatTableDataSource<TeamManager>;
 
   ngOnInit(): void {
-    this.getAllPlayers();
+    this.getAllManagers();
   }
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -28,7 +28,7 @@ export class ManagersComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  public getAllPlayers() {
+  public getAllManagers() {
     let url = "http://localhost:8080/teamManagers";
     this.http.get<TeamManager[]>(url).subscribe(
       res => {

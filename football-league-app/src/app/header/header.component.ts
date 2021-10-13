@@ -10,12 +10,20 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class HeaderComponent {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  // isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  //   .pipe(
+  //     map(result => result.matches),
+  //     shareReplay()
+  //   );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
+
+  showMenu: boolean = true;
+
+  toggle() {
+    if(this.showMenu){this.showMenu = false }
+    else{this.showMenu = true}
+  }
+
 
 }

@@ -1,34 +1,19 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/home">Home</a>
-      <a mat-list-item routerLink="/results">Results</a>
-      <a mat-list-item routerLink="/league-table">Table</a>
-      <a mat-list-item routerLink="/fixtures">Fixtures</a>
-      <a mat-list-item routerLink="/statistics">Statistics</a>
-      <a mat-list-item routerLink="/profile">Profile</a>
-      <a mat-list-item routerLink="/sign-up">Sign Up</a>
-      <a mat-list-item routerLink="/log-in">Log In</a>
+<mat-toolbar color="primary" class="navbar">
+  <div><a routerLink="/home"><img src="../assets/images/logo.png" alt="Logo" class="logo"></a></div>
+  <div class="routes">
+      <a routerLink="/home">Home</a>
+      <a routerLink="/results">Results</a>
+      <a routerLink="/league-table">Table</a>
+      <a routerLink="/fixtures">Fixtures</a>
+      <a routerLink="/statistics">Statistics</a>
+      <a routerLink="/profile">Profile</a>
+      <a routerLink="/sign-up">Sign Up</a>
+      <a routerLink="/log-in">Log In</a>
 
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>football-league-app</span>
-    </mat-toolbar>
-    <ng-content></ng-content>
-    <!-- Add Content Here -->
-  </mat-sidenav-content>
-</mat-sidenav-container>
+
+  </div>
+  <button (click)="toggle()" class="hamburger">
+      <img *ngIf="showMenu" src="../../assets/images/hamburger_button.svg" alt="menu" class="menuIcon">
+      <img *ngIf="showMenu == false" src="../../assets/images/close_button.svg" alt="close" class="closeIcon">
+  </button>
+</mat-toolbar>
