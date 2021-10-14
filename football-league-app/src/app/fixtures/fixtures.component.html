@@ -1,2 +1,21 @@
 <app-header></app-header>
-fixtures
+<div class="title">
+    <h1 class="mat-display-3 title">Fixtures</h1>
+</div>
+<mat-card *ngFor="let match of matches">
+    <div>
+        {{match.time}}
+    </div>
+    <div>
+        <img src="../../../assets/images/logo.png" alt="">
+        <mat-card-content>{{match.homeTeam}}</mat-card-content>
+    </div>
+    <div><h1 class="">VS</h1></div>
+    <div>
+        <img src="../../../assets/images/logo.png" alt="">
+        <mat-card-content>{{match.awayTeam}}</mat-card-content>
+    </div>
+    <div>
+        {{match.location}}
+    </div>
+</mat-card>

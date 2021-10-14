@@ -18,25 +18,3 @@ img {
 h1 {
     padding-top: 2rem;
 }
-
-.score {
-    font-size: 2rem;
-    margin-top: 1%;
-}
-
-.winner {
-    color: lightgreen;
-}
-
-.loser {
-    color: red;
-}
-
-.tie {
-    color: lightskyblue;
-}
-
-.title {
-    margin: 3% auto;
-    text-align: center;
-}

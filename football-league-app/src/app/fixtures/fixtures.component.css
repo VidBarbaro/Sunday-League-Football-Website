@@ -1,4 +1,25 @@
-.tab {
-    width: 80%;
-    margin: 2% auto;
+.title {
+    margin: 3% auto;
+    text-align: center;
+}
+
+mat-card {
+    width: 60%;
+    margin: 5% auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+div {
+    /* display: inline-block; */
+    margin: 0 auto;
+}
+
+img {
+    width: 50%;
+}
+
+h1 {
+    padding-top: 2rem;
 }

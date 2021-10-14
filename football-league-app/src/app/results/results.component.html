@@ -1,3 +1,23 @@
 <app-header></app-header>
-
-<p>results works!</p>
+<div class="title">
+    <h1 class="mat-display-3 title">Results</h1>
+</div>
+<mat-card *ngFor="let match of matches">
+    <div>
+        <img src="../../assets/images/logo.png" alt="">
+        <mat-card-content>{{match.homeTeam}}</mat-card-content>
+    </div>
+    <div class="score"
+    [ngClass]="{winner: match.homeGoals > match.awayGoals,
+                loser: match.homeGoals < match.awayGoals,
+                tie: match.homeGoals == match.awayGoals}">{{match.homeGoals}}</div>
+    <div><h1>:</h1></div>
+    <div class="score"
+    [ngClass]="{winner: match.homeGoals < match.awayGoals,
+        loser: match.homeGoals > match.awayGoals,
+        tie: match.homeGoals == match.awayGoals}">{{match.awayGoals}}</div>
+    <div>
+        <img src="../../assets/images/logo.png" alt="">
+        <mat-card-content>{{match.awayTeam}}</mat-card-content>
+    </div>
+</mat-card>

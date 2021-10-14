@@ -28,6 +28,7 @@ import { AdminComponent } from './admin/admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PlayersComponent } from './admin/players/players.component';
 import { ManagersComponent } from './admin/managers/managers.component';
+import { MatchComponent } from './fixtures/match/match.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ManagersComponent } from './admin/managers/managers.component';
     AdminComponent,
     PlayersComponent,
     ManagersComponent,
+    MatchComponent,
   ],
   imports: [
     BrowserModule,
