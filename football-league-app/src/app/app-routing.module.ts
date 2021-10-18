@@ -7,6 +7,7 @@ import { FixturesComponent } from './fixtures/fixtures.component';
 import { HomeComponent } from './home/home.component';
 import { LeagueTableComponent } from './league-table/league-table.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { ChangeDetailsComponent } from './profile/change-details/change-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResultsComponent } from './results/results.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -20,7 +21,17 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticsComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'log-in', component: LogInComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', 
+    children: [
+        {
+          path: '',
+          component: ProfileComponent
+        },
+        {
+            path: 'change-details',
+            component: ChangeDetailsComponent
+        }
+    ]},
   { path: 'admin',
     children: [
         {

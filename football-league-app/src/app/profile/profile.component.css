@@ -1,0 +1,43 @@
+.title {
+    margin: 3% auto;
+    text-align: center;
+}
+
+.image {
+    text-align: center;
+}
+
+.delete {
+    color: red;
+    font-weight: 500;
+}
+
+img {
+    width: 10%;
+}
+
+a {
+    padding: 0 2rem; 
+    text-decoration: none;
+    color: royalblue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+mat-card {
+    width: 60%;
+    margin: 5% auto;
+    align-items: center;
+}
+
+mat-card-title {
+    width: 100%;
+    text-align: center;
+}
+
+mat-card-content {
+    text-align: center;
+    padding-top: 2%;
+}
