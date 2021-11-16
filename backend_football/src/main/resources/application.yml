@@ -1,0 +1,25 @@
+jwt:
+  secret: 't53@BNSAp8Gah!bpaw6TdXbesbG?T2eH+CX_=scYzXcqG7x%h&p=Q$sS*6ywg#Su'
+
+server:
+  port: 8081
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_football
+    password: bardop1046
+    username: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+#  mvc:
+#    throw-exception-if-no-handler-found: true
+#  resources:
+#    add-mappings: false
