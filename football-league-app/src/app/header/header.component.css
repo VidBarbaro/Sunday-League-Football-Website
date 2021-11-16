@@ -40,6 +40,10 @@ a::after {
   transform-origin: right;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 a:hover::after {
   transform: scaleX(1);
   transform-origin: left;

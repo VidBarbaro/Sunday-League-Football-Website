@@ -1,0 +1,22 @@
+input {
+    width: 100%;
+}
+
+.row {
+    width: 100%;
+    padding: 2.5%;
+}
+
+.block {
+    display: inline-block;
+    padding-right: 2rem;
+}
+
+mat-card {
+    margin: 4%;
+    padding-inline: 2%;
+}
+
+mat-card-title {
+    padding-top: 2%;
+}

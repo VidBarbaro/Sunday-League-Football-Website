@@ -1,14 +1,16 @@
 <mat-toolbar color="primary" class="navbar">
   <div><a routerLink="/home"><img src="../assets/images/logo.png" alt="Logo" class="logo"></a></div>
   <div class="routes">
-      <a routerLink="/home">Home</a>
-      <a routerLink="/results">Results</a>
-      <a routerLink="/league-table">Table</a>
-      <a routerLink="/fixtures">Fixtures</a>
-      <a routerLink="/statistics">Statistics</a>
-      <a routerLink="/profile">Profile</a>
+      <a *ngIf="!userService.roleMatch(['Admin'])" routerLink="/home">Home</a>
+      <a *ngIf="!userService.roleMatch(['Admin'])" routerLink="/results">Results</a>
+      <a *ngIf="!userService.roleMatch(['Admin'])" routerLink="/league-table">Table</a>
+      <a *ngIf="!userService.roleMatch(['Admin'])" routerLink="/fixtures">Fixtures</a>
+      <a *ngIf="!userService.roleMatch(['Admin'])" routerLink="/statistics">Statistics</a>
+      <a *ngIf="userService.roleMatch(['User'])" routerLink="/profile">Profile</a>
+      <a *ngIf="!userService.roleMatch(['Admin'])" routerLink="/admin">Admin</a>
       <a routerLink="/sign-up">Sign Up</a>
-      <a routerLink="/log-in">Log In</a>
+      <a *ngIf="!isLoggedIn()" routerLink="/login">Log In</a>
+      <a *ngIf="isLoggedIn()" (click)="logout()">Log Out</a>
 
 
   </div>

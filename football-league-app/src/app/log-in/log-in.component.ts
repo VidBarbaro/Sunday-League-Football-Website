@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserAuthService } from '../_services/user-auth.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-log-in',
@@ -8,20 +11,37 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LogInComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder) {}
-
-  loginForm!: FormGroup;
+  constructor(
+    private userService: UserService, 
+    private userAuthService: UserAuthService,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      email: '',
-      password: '',
-      rememberMe: ''
-    });
   }
 
-  onSubmit(){
-    console.log(this.loginForm.value);
+  hide = true;
+
+  login(loginForm: NgForm) {
+    
+    this.userService.login(loginForm.value).subscribe(
+      (response: any)=>{
+        this.userAuthService.setRoles(response.user.role);
+        this.userAuthService.setToken(response.jwtToken);
+        this.userAuthService.setUserName(response.user.userName);
+
+        const role = response.user.role[0].roleName;
+        if(role === "Admin") {
+          this.router.navigate(['/admin']);
+        }
+        else {
+          this.router.navigate(['/home']);
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 }

@@ -1,4 +1,4 @@
-package com.example.individualproject.model;
+package com.footballleaguebackend.demo.models;
 
 import java.util.ArrayList;
 import java.util.List;

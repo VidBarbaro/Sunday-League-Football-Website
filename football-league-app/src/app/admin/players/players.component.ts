@@ -15,7 +15,7 @@ export class PlayersComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'country', 'club'];
+  displayedColumns: string[] = ['userName', 'userFirstName', 'userLastName', 'requestedRole'];
   dataSource!: MatTableDataSource<Player>;
 
   ngOnInit(): void {
@@ -29,11 +29,12 @@ export class PlayersComponent implements OnInit {
   }
 
   public getAllPlayers() {
-    let url = "http://localhost:8080/players";
+    let url = "http://localhost:9090/allUsers";
     this.http.get<Player[]>(url).subscribe(
       res => {
         this.players = res;
         this.dataSource = new MatTableDataSource(this.players);
+        console.log(this.players[0]);
       },
       err => {
         alert("An error has occured;")

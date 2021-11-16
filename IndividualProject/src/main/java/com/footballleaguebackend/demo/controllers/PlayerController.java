@@ -1,8 +1,7 @@
-package com.example.individualproject.controller;
+package com.footballleaguebackend.demo.controllers;
 
-import com.example.individualproject.model.Player;
-import com.example.individualproject.model.Club;
-import com.example.individualproject.repository.FakeDataStore;
+import com.footballleaguebackend.demo.models.Player;
+import com.footballleaguebackend.demo.repositories.FakeDataStore;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

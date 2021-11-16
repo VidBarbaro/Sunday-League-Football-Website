@@ -1,51 +1,28 @@
-<app-header></app-header>
+<div class="title">
+    <h1 class="mat-display-3 title">Login</h1>
+</div>
 
-<form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-container">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title style="margin-left: 1.5rem; margin-top: 1.2rem;">Sign Up</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field class="full-width">
-                        <input formControlName="firstName" matInput placeholder="First Name" type="text">
-                    </mat-form-field>
-                </div>
-            </div>
-            <img class="img-in" src="https://cdn-icons-png.flaticon.com/512/2817/2817774.png" alt="image">
-
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field class="full-width">
-                        <input formControlName="lastName" matInput placeholder="Last Name" type="text">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field class="full-width">
-                        <input formControlName="email" matInput placeholder="Email" type="email">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field class="full-width">
-                        <input formControlName="password" matInput placeholder="Password" type="password">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field class="full-width">
-                        <input formControlName="confirmPassword" matInput placeholder="Confirm Password" type="password">
-                    </mat-form-field>
-                </div>
-            </div>
-        </mat-card-content>
-        <mat-card-actions>
-            <button type="submit" style="margin-left: 4%; margin-bottom: 3%;" mat-raised-button color="primary">Create Account</button>
-          </mat-card-actions>
-    </mat-card>
-</form>
+<mat-card>
+    <form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput type="text"
+            ngModel
+            name="userName"
+            id="userName"
+            >
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'"
+            ngModel
+            name="userPassword"
+            id="userPassword"
+            >
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">&nbsp; Login &nbsp;</button>
+    </form>
+</mat-card>

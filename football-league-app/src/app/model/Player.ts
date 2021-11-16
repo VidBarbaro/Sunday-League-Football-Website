@@ -1,7 +1,7 @@
 export interface Player {
-    id: Number;
-    firstName: String;
-    lastName: String;
-    country: String;
-    club: String;
+    userName: String;
+    userFirstName: String;
+    userLastName: String;
+    userPassword: String;
+    requestedRole: String;
 }

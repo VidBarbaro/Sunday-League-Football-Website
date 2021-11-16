@@ -1,22 +1,15 @@
-package com.example.individualproject.model;
+package com.footballleaguebackend.demo.models;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Objects;
-import java.util.Calendar;
 
-@SuppressWarnings("WeakerAccess")
-public class Player {
-
+public class TeamManager {
     private int id;
     private String firstName;
     private String lastName;
     private String country;
     private String club; // needs to be type Club
 
-
-    public Player(int id, String firstName, String lastName, String country, String club) {
+    public TeamManager(int id, String firstName, String lastName, String country, String club) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,7 +17,7 @@ public class Player {
         this.club = club;
     }
 
-    public Player() {
+    public TeamManager() {
     }
 
     public int getId() {
@@ -67,8 +60,8 @@ public class Player {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return id == player.id;
+        TeamManager teamManager = (TeamManager) o;
+        return id == teamManager.id;
     }
 
     @Override
@@ -78,7 +71,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
+        return "Team manager{" +
                 "id=" + id +
                 ", name='" + firstName + " " + lastName + '\'' +
                 ", country=" + country +

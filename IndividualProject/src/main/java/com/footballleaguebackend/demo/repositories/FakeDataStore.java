@@ -1,14 +1,13 @@
-package com.example.individualproject.repository;
+package com.footballleaguebackend.demo.repositories;
 
-import com.example.individualproject.model.Club;
-import com.example.individualproject.model.Player;
-import com.example.individualproject.model.TeamManager;
+import com.footballleaguebackend.demo.models.Club;
+import com.footballleaguebackend.demo.models.Player;
+import com.footballleaguebackend.demo.models.TeamManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FakeDataStore {
-
     private final List<Player> playerList = new ArrayList<>();
     private final List<TeamManager> teamManagerList = new ArrayList<>();
     private final List<Club> clubList = new ArrayList<>();
@@ -64,7 +63,7 @@ public class FakeDataStore {
 
     public boolean addPlayer(Player player) {
         if (this.getPlayer(player.getId()) != null){
-               return false;
+            return false;
         }
         playerList.add(player);
         return true;
@@ -84,8 +83,8 @@ public class FakeDataStore {
 
     //    TeamManager
     public List<TeamManager> getTeamManagers() {
-    return teamManagerList;
-}
+        return teamManagerList;
+    }
 
     public List<TeamManager> getTeamManagers(Club club) {
         List<TeamManager> filtered = new ArrayList<>();

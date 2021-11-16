@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserAuthService } from '../_services/user-auth.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,22 +11,26 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder) {}
-
-  signupForm!: FormGroup;
+  constructor(
+    private userService: UserService, 
+    private userAuthService: UserAuthService,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
-    this.signupForm = this.formBuilder.group({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    });
   }
 
-  onSubmit(){
-    console.log(this.signupForm.value);
-  }
+  hide = true;
 
+  signup(signupForm: NgForm) {
+    
+    this.userService.signup(signupForm.value).subscribe(
+      (response: any)=>{
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

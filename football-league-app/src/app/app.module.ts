@@ -25,11 +25,17 @@ import { MatSortModule } from '@angular/material/sort';
 import { LeagueTableComponent } from './league-table/league-table.component'
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AdminComponent } from './admin/admin.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PlayersComponent } from './admin/players/players.component';
 import { ManagersComponent } from './admin/managers/managers.component';
 import { MatchComponent } from './fixtures/match/match.component';
 import { ChangeDetailsComponent } from './profile/change-details/change-details.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AuthGuard } from './_auth/auth.guard';
+import { AuthInterceptor } from './_auth/auth.interceptor';
+import { UserService } from './_services/user.service';
 
 @NgModule({
   declarations: [
@@ -48,11 +54,13 @@ import { ChangeDetailsComponent } from './profile/change-details/change-details.
     ManagersComponent,
     MatchComponent,
     ChangeDetailsComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MaterialModule,
     LayoutModule,
     MatToolbarModule,
@@ -64,9 +72,18 @@ import { ChangeDetailsComponent } from './profile/change-details/change-details.
     MatPaginatorModule,
     HttpClientModule,
     MatSortModule,
+    RouterModule,
     NgxEchartsModule.forRoot({ echarts: () => import('echarts'),}),
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

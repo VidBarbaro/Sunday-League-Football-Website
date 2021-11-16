@@ -1,54 +1,15 @@
+mat-card {
+    margin: 6% auto;
+    width: 25%;
+    height: 12rem;
+    text-align: center;
+}
 
-.full-width{
+mat-form-field{
     width: 80%;
 }
 
-.top-padding{
-    padding-top: 3px;
+.title {
+    margin: 3% auto;
+    text-align: center;
 }
-
-.margin-left mat-checkbox:not(:first-child){
-    margin-left:10px;
-}
-
-.form-container{
-    margin: 8%;
-}
-
-.img-in {
-    width: 10rem;
-    height: auto;
-    float:right;
-}
-
-.img-out {
-    width: 10rem;
-    height: auto;
-    display: none;
-    padding-left: 40%;
-}
-
-div {
-    padding-left: 2%;
-}
-
-@media screen and (max-width:1296px) {  
-    .img-in {
-      display: none;
-    }
-
-    .full-width{
-        width: 100%;
-    }
-  }
-
-  @media screen and (max-width:420px) {  
-    .full-width{
-        width: 100%;
-    }
-
-    .form-container{
-        width: 80%;
-        height: auto;
-    }
-  }

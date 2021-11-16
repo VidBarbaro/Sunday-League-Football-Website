@@ -1,0 +1,237 @@
+<Project>
+  <Name>IndividualS3</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>SundayLeague</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Player</Name>
+        <Access>Public</Access>
+        <Location left="166" top="624" />
+        <Size width="162" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private int goalsScored</Member>
+        <Member type="Field">int goalsAssissted</Member>
+        <Member type="Field">bool isAvailableToPlay</Member>
+        <Member type="Field">Club club</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TeamManager</Name>
+        <Access>Public</Access>
+        <Location left="391" top="624" />
+        <Size width="162" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Club club</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Referee</Name>
+        <Access>Public</Access>
+        <Location left="614" top="624" />
+        <Size width="162" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">IMatch[] matches</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Admin</Name>
+        <Access>Public</Access>
+        <Location left="757" top="394" />
+        <Size width="162" height="77" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>User</Name>
+        <Access>Public</Access>
+        <Location left="391" top="35" />
+        <Size width="162" height="281" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected int id</Member>
+        <Member type="Field">protected String[] authorities</Member>
+        <Member type="Field">protected int newField</Member>
+        <Member type="Field">protected String email</Member>
+        <Member type="Field">protected String firstName</Member>
+        <Member type="Field">protected String lastName</Member>
+        <Member type="Field">protected int isActive</Member>
+        <Member type="Field">protected int isNotLocked</Member>
+        <Member type="Field">protected Date joinDate</Member>
+        <Member type="Field">protected Date lastLoginDate</Member>
+        <Member type="Field">protected String password</Member>
+        <Member type="Field">protected String profileImageUrl</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LeagueParticipant</Name>
+        <Access>Public</Access>
+        <Location left="391" top="383" />
+        <Size width="162" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected Gender gender</Member>
+        <Member type="Field">protected Date dateOfBirth</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>Gender</Name>
+        <Access>Public</Access>
+        <Location left="124" top="383" />
+        <Size width="162" height="95" />
+        <Collapsed>False</Collapsed>
+        <Value>MALE</Value>
+        <Value>FEMALE</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Club</Name>
+        <Access>Public</Access>
+        <Location left="391" top="782" />
+        <Size width="162" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">TeamManager teamManager</Member>
+        <Member type="Field">Player[] players</Member>
+        <Member type="Field">String name</Member>
+        <Member type="Field">String location</Member>
+        <Member type="Field">Fixture[] fixtures</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Fixture</Name>
+        <Access>Public</Access>
+        <Location left="770" top="844" />
+        <Size width="162" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Date dateAndTime</Member>
+        <Member type="Field">String location</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IMatch</Name>
+        <Access>Public</Access>
+        <Location left="833" top="624" />
+        <Size width="162" height="112" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">Club homeTeam { get; set; }</Member>
+        <Member type="Property">Club awayTeam { get; set; }</Member>
+        <Member type="Property">Referee referee { get; set; }</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>Result</Name>
+        <Access>Public</Access>
+        <Location left="594" top="844" />
+        <Size width="162" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">int homeTeamGoals</Member>
+        <Member type="Field">int awayTeamGoals</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="3" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>841</X>
+          <Y>369</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="5" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="0" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="2" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="1" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="5" second="6">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>500</X>
+          <Y>758</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>club</EndRole>
+        <EndMultiplicity>0..1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="7" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>449</X>
+          <Y>757</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>manager</EndRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="7" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>361</X>
+          <Y>890</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>210</X>
+          <Y>806</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>players</EndRole>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>club</EndRole>
+        <EndMultiplicity>0..1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Realization" first="8" second="9">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="10" second="9">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>882</X>
+          <Y>762</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="2" second="9">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>matches</EndRole>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
