@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { UserAuthService } from '../_services/user-auth.service';
 import { Router } from '@angular/router';
-import { UserService } from '../_services/user.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-header',
@@ -11,25 +10,20 @@ import { UserService } from '../_services/user.service';
 export class HeaderComponent {
 
   constructor(
-    private userAuthService: UserAuthService,
     private router: Router,
-    public userService: UserService
+    private userService: UserService,
     ) {}
 
   showMenu: boolean = true;
+  currentUserRole: string = null;
 
   toggle() {
     if(this.showMenu){this.showMenu = false }
     else{this.showMenu = true}
   }
 
-  public isLoggedIn() {
-    return this.userAuthService.isLoggedIn();
+  ngOnInit() {    
+    this.currentUserRole = this.userService.getUserRole();
+    console.log(this.currentUserRole);
   }
-
-  public logout() {
-    this.userAuthService.clear();
-    this.router.navigate(['/home']);
-  }
-
 }

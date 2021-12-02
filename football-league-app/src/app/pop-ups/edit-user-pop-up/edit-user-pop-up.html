@@ -1,0 +1,27 @@
+<div class="main">
+    <div class="content firstTab">
+        <img height="100" width="100" src="{{profileImageUrl}}" alt="">
+        <h1>{{firstName}} {{lastName}}</h1>
+    </div>
+    <div class="content">
+        <h3>{{username}}</h3>
+        <h3>Status: 
+            <span *ngIf="status" class="success">Active</span>
+            <span *ngIf="!status" class="error">Inactive</span>
+        </h3>
+    </div>
+    <div class="content">
+        <h2>{{userID}}</h2>
+        <h2>{{email}}</h2>
+        <h2>{{role}}</h2>
+        <h2>
+            <span *ngIf="isLocked" class="success">Account Unlocked</span>
+            <span *ngIf="!isLocked" class="error">Account Locked</span>
+        </h2>
+    </div>
+    <div class="content">
+        <button>
+            Close
+        </button>
+    </div>
+</div>

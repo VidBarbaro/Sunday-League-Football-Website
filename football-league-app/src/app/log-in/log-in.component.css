@@ -1,16 +1,16 @@
-
 mat-card {
-    margin: 6% auto;
-    width: 25%;
-    height: 12rem;
     text-align: center;
+    margin: 10% 35%;
 }
 
-mat-form-field{
-    width: 80%;
+mat-card-title {
+    padding: 1.5rem;
 }
 
-.title {
-    margin: 3% auto;
-    text-align: center;
+mat-form-field {
+    padding: 2%;
+}
+
+button {
+    margin: 2%;
 }

@@ -1,28 +1,25 @@
-<div class="title">
-    <h1 class="mat-display-3 title">Login</h1>
-</div>
-
 <mat-card>
-    <form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
+    <mat-card-title>Signup</mat-card-title>
+    <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
         <mat-form-field appearance="fill">
-            <mat-label>Username</mat-label>
-            <input matInput type="text"
-            ngModel
-            name="userName"
-            id="userName"
-            >
+            <mat-label>Enter First Name</mat-label>
+            <input matInput placeholder="John" required name="firstName" ngModel #firstNameInput>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'"
-            ngModel
-            name="userPassword"
-            id="userPassword"
-            >
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
+            <mat-label>Enter Last Name</mat-label>
+            <input matInput placeholder="Doe" required name="lastName" ngModel #lastNameInput>
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">&nbsp; Login &nbsp;</button>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter Username</mat-label>
+            <input matInput placeholder="username111" required name="username" ngModel #usernameInput>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter Email</mat-label>
+            <input matInput placeholder="vid@gmail.com" required name="email" ngModel #emailInput>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <br>
+        <button type="submit" [disabled]="registerForm.invalid || showLoading" mat-raised-button color="primary" name="button">Register</button>
+        <span *ngIf="showLoading">Loading...</span>
     </form>
 </mat-card>

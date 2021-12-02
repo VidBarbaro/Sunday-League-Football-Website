@@ -1,0 +1,29 @@
+.content {
+    margin: 5%;
+    border-style: solid;
+    padding: 3%;
+    padding-right: 15%;
+}
+
+.success {
+    background-color: green;
+    color: white;
+    padding: 1%;
+    margin: 1%;
+}
+
+.error {
+    background-color: red;
+    color: white;
+    padding: 1%;
+    margin: 1%;
+}
+
+.main {
+    width: 100%
+}
+
+.firstTab {
+    display: flex;
+    flex-direction: row;
+}

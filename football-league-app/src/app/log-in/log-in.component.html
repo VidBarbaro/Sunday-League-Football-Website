@@ -1,28 +1,17 @@
-<div class="title">
-    <h1 class="mat-display-3 title">Login</h1>
-</div>
-
 <mat-card>
-    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <mat-card-title>Login</mat-card-title>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
         <mat-form-field appearance="fill">
-            <mat-label>Username</mat-label>
-            <input matInput type="text"
-            ngModel
-            name="userName"
-            id="userName"
-            >
+            <mat-label>Enter your username</mat-label>
+            <input matInput placeholder="username111" required name="username" ngModel #usernameInput>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'"
-            ngModel
-            name="userPassword"
-            id="userPassword"
-            >
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
+            <mat-label>Enter your password</mat-label>
+            <input matInput placeholder="password123" required name="password" ngModel #passwordInput>
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">&nbsp; Login &nbsp;</button>
+        <br>
+        <button type="submit" [disabled]="loginForm.invalid || showLoading" mat-raised-button color="primary" name="button">Login</button>
+        <span *ngIf="showLoading">Loading...</span>
     </form>
 </mat-card>

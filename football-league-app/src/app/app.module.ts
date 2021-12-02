@@ -33,9 +33,14 @@ import { ChangeDetailsComponent } from './profile/change-details/change-details.
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { AuthGuard } from './_auth/auth.guard';
-import { AuthInterceptor } from './_auth/auth.interceptor';
-import { UserService } from './_services/user.service';
+import { AuthenticationService } from './service/authentication.service';
+import { UserService } from './service/user.service';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { AuthenticationGuard } from './guard/authentication.guard';
+import { NotificationModule } from './notification.module';
+import { NotificationService } from './service/notification.service';
+import { PopUpComponent } from './pop-ups/edit-user-pop-up/edit-user-pop-up';
+import { NewUserPopUpComponent } from './pop-ups/new-user-pop-up/new-user-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +60,7 @@ import { UserService } from './_services/user.service';
     MatchComponent,
     ChangeDetailsComponent,
     ForbiddenComponent,
+    NewUserPopUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,20 +76,14 @@ import { UserService } from './_services/user.service';
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
+    FormsModule,
     HttpClientModule,
     MatSortModule,
     RouterModule,
     NgxEchartsModule.forRoot({ echarts: () => import('echarts'),}),
+    NotificationModule
   ],
-  providers: [
-    AuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    UserService
-  ],
+  providers: [NotificationService, AuthenticationGuard, AuthenticationService, UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

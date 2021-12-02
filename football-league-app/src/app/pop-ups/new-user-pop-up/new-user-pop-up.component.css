@@ -1,0 +1,23 @@
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 30%;
+    text-align: left;
+}
+
+input {
+  display: inline-block;
+  float: left;
+}
+
+div {
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    background-color: blueviolet;
+    color: white;
+}

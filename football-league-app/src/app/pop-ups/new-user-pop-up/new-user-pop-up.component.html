@@ -1,0 +1,47 @@
+<div class="main">
+    <div class="content firstTab">
+        <h1>New User</h1>
+    </div>
+    <form #newUserForm="ngForm" (ngSubmit)="saveNewUser(newUserForm)">
+    <div class="content">
+            <label for="firstName">First Name: </label>
+            <input type="text" name="firstName" required ngModel>
+            <br>
+            <label for="lastName">Last Name: </label>
+            <input type="text" name="lastName" required ngModel>
+            <br>
+            <label for="username">Username: </label>
+            <input type="text" name="username" required ngModel>
+            <br>
+            <label for="email">Email: </label>
+            <input type="text" name="email" required ngModel>
+            <br>
+            <label for="authority">Role: </label>
+            <select name="role" required ngModel="ROLE_USER">
+              <option value="ROLE_USER">USER</option>
+              <option value="ROLE_PLAYER">PLAYER</option>
+              <option value="ROLE_TEAM_MANAGER">TEAM MANAGER</option>
+              <option value="ROLE_REFEREE">REFEREE</option>
+              <option value="ROLE_ADMIN">ADMIN</option>
+            </select>
+            <br>
+            <label for="profilePicture">Profile Picture: </label>
+            <input type="file" accept="image/*" name="profileImage" 
+            (change)="onProfileImageChange($any($event).target.files[0].name, $any($event).target.files[0])">
+            <br>
+            <label>
+                <input type="checkbox" name="active" ngModel>
+                Active
+            </label>
+            <label>
+                <input type="checkbox" name="notLocked" ngModel>
+                Unlocked
+            </label>
+    </div>
+    <div class="content">
+        <button type="submit" [disabled]="newUserForm.invalid">
+            Create User
+        </button>
+    </div>
+    </form>
+</div>

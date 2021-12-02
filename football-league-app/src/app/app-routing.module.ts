@@ -13,7 +13,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { ResultsComponent } from './results/results.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { StatisticsComponent } from './statistics/statistics.component';
-import { AuthGuard } from './_auth/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,7 +23,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'login', component: LogInComponent },
   { path: 'forbidden', component: ForbiddenComponent },
-  { path: 'profile',  canActivate:[AuthGuard], data:{roles:['User']},
+  { path: 'profile',
     children: [
         {
           path: '',
@@ -35,20 +34,12 @@ const routes: Routes = [
             component: ChangeDetailsComponent
         }
     ]},
-  { path: 'admin', canActivate:[AuthGuard], data:{roles:['Admin']},
+  { path: 'admin',
     children: [
         {
           path: '',
           component: AdminComponent
         },
-        {
-            path: 'players',
-            component: PlayersComponent
-        },
-        {
-            path: 'teamManagers',
-            component: ManagersComponent
-        }
     ]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
