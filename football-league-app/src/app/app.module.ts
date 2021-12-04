@@ -41,6 +41,8 @@ import { NotificationModule } from './notification.module';
 import { NotificationService } from './service/notification.service';
 import { PopUpComponent } from './pop-ups/edit-user-pop-up/edit-user-pop-up';
 import { NewUserPopUpComponent } from './pop-ups/new-user-pop-up/new-user-pop-up.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ResetUserPasswordComponent } from './admin/reset-user-password/reset-user-password.component';
 
 @NgModule({
   declarations: [
@@ -61,12 +63,13 @@ import { NewUserPopUpComponent } from './pop-ups/new-user-pop-up/new-user-pop-up
     ChangeDetailsComponent,
     ForbiddenComponent,
     NewUserPopUpComponent,
+    PopUpComponent,
+    ResetUserPasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
     MaterialModule,
     LayoutModule,
     MatToolbarModule,
@@ -81,7 +84,8 @@ import { NewUserPopUpComponent } from './pop-ups/new-user-pop-up/new-user-pop-up
     MatSortModule,
     RouterModule,
     NgxEchartsModule.forRoot({ echarts: () => import('echarts'),}),
-    NotificationModule
+    NotificationModule,
+    ReactiveFormsModule
   ],
   providers: [NotificationService, AuthenticationGuard, AuthenticationService, UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

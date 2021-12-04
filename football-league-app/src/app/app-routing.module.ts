@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { ManagersComponent } from './admin/managers/managers.component';
 import { PlayersComponent } from './admin/players/players.component';
+import { ResetUserPasswordComponent } from './admin/reset-user-password/reset-user-password.component';
 import { FixturesComponent } from './fixtures/fixtures.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './home/home.component';
@@ -40,6 +41,10 @@ const routes: Routes = [
           path: '',
           component: AdminComponent
         },
+        {
+          path: 'reset-user-password',
+          component: ResetUserPasswordComponent
+        }
     ]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 

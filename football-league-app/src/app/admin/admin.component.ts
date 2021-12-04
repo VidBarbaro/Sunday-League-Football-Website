@@ -11,6 +11,7 @@ import { UserService } from '../service/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-ups/edit-user-pop-up/edit-user-pop-up';
 import { NewUserPopUpComponent } from '../pop-ups/new-user-pop-up/new-user-pop-up.component';
+import { CustomHttpResponse } from '../model/custom-http-response';
 
 interface Users {
   profileImageUrl: string;
@@ -81,24 +82,14 @@ export class AdminComponent implements OnInit {
         }
       )
     );
-    console.log(this.users);
-    
   }
 
-  public openEditUser() {
+  public openEditUser(user: User) {
     this.dialogRef.open(PopUpComponent,{
       //data
       width: '30%',
       data: {
-        profileImageUrl: this.selectedUser.profileImageUrl,
-        firstName: this.selectedUser.firstName,
-        lastName: this.selectedUser.lastName,
-        username: this.selectedUser.username,
-        status: this.selectedUser.active,
-        userID: this.selectedUser.userId,
-        email: this.selectedUser.email,
-        role: this.selectedUser.role,
-        isLocked: this.selectedUser.notLocked
+        editUser: user
       }
     });
   }
@@ -109,10 +100,40 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  public onSelectUser(selectedUser: User): void {
-    this.selectedUser = selectedUser;
-    document.getElementById('openUserInfo').click();
-    this.selectedUser = null;
+  // public onSelectUser(selectedUser: User): void {
+  //   this.selectedUser = selectedUser;
+  //   document.getElementById('openUserInfo').click();
+  //   this.selectedUser = null;
+  // }
+
+  public searchUsers(searchTerm: string): void {
+    const results: User[] = [];
+    for (const user of this.userService.getUsersFromLocalCache()) {
+      if (user.firstName.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+          user.lastName.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+          user.username.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+          user.userId.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+            results.push(user);
+      }
+    }
+    this.users = results;
+    if (results.length == 0 || !searchTerm) {
+      this.users = this.userService.getUsersFromLocalCache();
+    }
+  }
+
+  public onDeleteUser(username: string): void {
+    this.subscriptions.push(
+      this.userService.deleteUser(username).subscribe(
+        (response: CustomHttpResponse) => {
+          this.sendNotification(NotificationType.SUCCESS, response.message);
+          this.getUsers();
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
+      )
+    );
   }
 
   private sendNotification(notificationType: NotificationType, message: string): void {

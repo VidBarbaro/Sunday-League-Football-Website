@@ -51,7 +51,7 @@ input {
 }
 
 .toolbar {
-    margin-left: 60%;
+    margin-left: 53%;
     width: 40%;
     display:inline-flex;
     margin-top: 7%;
@@ -61,6 +61,12 @@ input {
     background-color: green;
     color: white;
     border-color: green;
+}
+
+.resetPassword {
+    background-color: teal;
+    color: white;
+    border-color: teal;
 }
 
 .refresh {

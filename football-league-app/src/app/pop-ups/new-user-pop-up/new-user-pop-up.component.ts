@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotificationType } from 'src/app/enum/notification-type-enum';
 import { User } from 'src/app/model/user';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -38,6 +37,7 @@ export class NewUserPopUpComponent implements OnInit {
       },
       (errorResponse: HttpErrorResponse) => {
         this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        this.profileImage = null;
       }
     )
   }

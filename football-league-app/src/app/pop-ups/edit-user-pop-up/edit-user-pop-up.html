@@ -1,27 +1,51 @@
 <div class="main">
     <div class="content firstTab">
-        <img height="100" width="100" src="{{profileImageUrl}}" alt="">
-        <h1>{{firstName}} {{lastName}}</h1>
+        <h1>Edit User {{firstName}} {{lastName}}</h1>
+    </div>
+    <form #editUserForm="ngForm">
+    <div class="content">
+            <label for="firstName">First Name: </label>
+            <input type="text" name="firstName" required 
+            [(ngModel)]="firstName">
+            <br>
+            <label for="lastName">Last Name: </label>
+            <input type="text" name="lastName" required
+            [(ngModel)]="lastName">
+            <br>
+            <label for="username">Username: </label>
+            <input type="text" name="username" required
+            [(ngModel)]="username">
+            <br>
+            <label for="email">Email: </label>
+            <input type="text" name="email" required
+            [(ngModel)]="email">
+            <br>
+            <label for="authority">Role: </label>
+            <select name="role" required [(ngModel)]="role">
+              <option value="ROLE_USER">USER</option>
+              <option value="ROLE_PLAYER">PLAYER</option>
+              <option value="ROLE_TEAM_MANAGER">TEAM MANAGER</option>
+              <option value="ROLE_REFEREE">REFEREE</option>
+              <option value="ROLE_ADMIN">ADMIN</option>
+            </select>
+            <br>
+            <label for="profilePicture">Profile Picture: </label>
+            <input type="file" accept="image/*" name="profileImage" 
+            (change)="onProfileImageChange($any($event).target.files[0].name, $any($event).target.files[0])">
+            <br>
+            <label>
+                <input type="checkbox" name="active" [(ngModel)]="status">
+                Active
+            </label>
+            <label>
+                <input type="checkbox" name="notLocked" [(ngModel)]="isLocked">
+                Unlocked
+            </label>
     </div>
     <div class="content">
-        <h3>{{username}}</h3>
-        <h3>Status: 
-            <span *ngIf="status" class="success">Active</span>
-            <span *ngIf="!status" class="error">Inactive</span>
-        </h3>
-    </div>
-    <div class="content">
-        <h2>{{userID}}</h2>
-        <h2>{{email}}</h2>
-        <h2>{{role}}</h2>
-        <h2>
-            <span *ngIf="isLocked" class="success">Account Unlocked</span>
-            <span *ngIf="!isLocked" class="error">Account Locked</span>
-        </h2>
-    </div>
-    <div class="content">
-        <button>
-            Close
+        <button type="submit" (click)="onUpdateUser()" [disabled]="editUserForm.invalid">
+            Update User
         </button>
     </div>
+    </form>
 </div>

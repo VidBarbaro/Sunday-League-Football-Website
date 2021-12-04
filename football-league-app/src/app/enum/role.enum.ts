@@ -1,0 +1,7 @@
+export enum Role {
+    USER = 'ROLE_USER',
+    PLAYER = 'ROLE_PLAYER',
+    TEAM_MANAGER = 'ROLE_TEAM_MANAGER',
+    REFEREE = 'ROLE_REFEREE',
+    ADMIN = 'ROLE_ADMIN'
+  }

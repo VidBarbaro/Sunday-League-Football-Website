@@ -1,3 +1,5 @@
+import { Role } from "../enum/role.enum";
+
 export class User {
     public id: number;
     public userId: string;
@@ -10,7 +12,7 @@ export class User {
     public profileImageUrl: string;
     public active: boolean;
     public notLocked: boolean;
-    public role: string;
+    public role: Role;
     public authorities: [];
 
     constructor() {
@@ -20,7 +22,7 @@ export class User {
         this.email = '';
         this.active = false;
         this.notLocked = false;
-        this.role = '';
+        this.role = Role.USER;
         this.authorities = [];
     }
 }
