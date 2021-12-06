@@ -6,6 +6,7 @@ import { PlayersComponent } from './admin/players/players.component';
 import { ResetUserPasswordComponent } from './admin/reset-user-password/reset-user-password.component';
 import { FixturesComponent } from './fixtures/fixtures.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { AuthenticationGuard } from './guard/authentication.guard';
 import { HomeComponent } from './home/home.component';
 import { LeagueTableComponent } from './league-table/league-table.component';
 import { LogInComponent } from './log-in/log-in.component';
@@ -36,6 +37,7 @@ const routes: Routes = [
         }
     ]},
   { path: 'admin',
+    canActivate: [AuthenticationGuard],
     children: [
         {
           path: '',

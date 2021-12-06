@@ -1,24 +1,54 @@
-<div class="title">
-    <h1 class="mat-display-3 title">Profile</h1>
-</div>
-
-<div class="image">
-    <img src="../../assets/images/user-profile.svg" alt="profile_picture">
-</div>
 <mat-card>
-    <mat-card-title>
-        Update Profile
-    </mat-card-title>
-    <mat-card-content>
-        <a routerLink="/profile/change-details">Change Details</a>
-        <a href="">Reset Password</a>
-    </mat-card-content>
-</mat-card>
-<mat-card>
-    <mat-card-title>
-        Delete Profile
-    </mat-card-title>
-    <mat-card-content>
-        <a href="" class="delete">Delete Profile</a>
-    </mat-card-content>
+    <form #profileUserForm="ngForm" (ngSubmit)="onUpdateCurrentUser(profileUserForm.value)">
+        <div class="header">
+            <div class="left">
+                <img src="{{user.profileImageUrl}}" alt="" width="150" height="150">
+            </div>
+            <div class="right">
+                <br>
+                <h1>{{user.firstName}} {{user.lastName}}</h1>
+                <h2>{{user.username}}</h2>
+                <button  mat-raised-button color="accent">Change Photo</button>
+            </div>
+        </div>
+        <div>
+            <label for="firstName">First Name: </label>
+            <input type="text" name="firstName" required 
+            [(ngModel)]="user.firstName" class="input">
+            <label for="lastName">Last Name: </label>
+            <input type="text" name="lastName" required
+            [(ngModel)]="user.lastName" class="input">
+        </div>
+        <div>
+            <label for="username">Username: </label>
+            <input type="text" name="username" required
+            [(ngModel)]="user.username" class="input">
+    
+            <label for="email">Email: </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="email" required
+            [(ngModel)]="user.email" class="input">
+    
+            <label for="authority">Role: </label>
+            <select name="role" required [(ngModel)]="user.role">
+              <option value="ROLE_USER">USER</option>
+              <option value="ROLE_PLAYER">PLAYER</option>
+              <option value="ROLE_TEAM_MANAGER">TEAM MANAGER</option>
+              <option value="ROLE_REFEREE">REFEREE</option>
+              <option value="ROLE_ADMIN">ADMIN</option>
+            </select>
+        </div>
+        <div class="footer">
+            <h2>Account Settings:</h2>
+            <label>
+                <input type="checkbox" name="active" [(ngModel)]="user.active" readonly>
+                Active
+            </label>
+            <label>
+                <input type="checkbox" name="notLocked" [(ngModel)]="user.notLocked" readonly>
+                Unlocked
+            </label>
+        </div>
+        <button type="submit" mat-raised-button color="primary">Save Changes</button>
+    </form>
 </mat-card>

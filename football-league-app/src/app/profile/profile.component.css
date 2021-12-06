@@ -1,43 +1,72 @@
-.title {
-    margin: 3% auto;
-    text-align: center;
-}
-
-.image {
-    text-align: center;
-}
-
-.delete {
-    color: red;
-    font-weight: 500;
-}
-
-img {
-    width: 10%;
-}
-
-a {
-    padding: 0 2rem; 
-    text-decoration: none;
-    color: royalblue;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 mat-card {
     width: 60%;
     margin: 5% auto;
     align-items: center;
 }
 
-mat-card-title {
-    width: 100%;
-    text-align: center;
+mat-card-content {
+    text-align: left;
+    padding-top: 2%;
+    display: flex;
+    flex-direction: row;
 }
 
-mat-card-content {
-    text-align: center;
-    padding-top: 2%;
+div {
+    margin: 2%;
+}
+
+.input {
+    width: 85%;
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin: 2%;
+    margin-top: 1%;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+}
+
+input:focus{
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+}
+
+.name {
+    width: 35%;
+}
+
+select {
+    background: blueviolet;
+    border: 1px solid blue;
+    width: 85%;
+    height: 2rem;
+    margin: 0;
+    padding: 0 0 0 .5em;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 3.4rem;
+}
+ 
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 1em;
+    background: #34495E;
+    pointer-events: none;
+}
+ 
+.left {
+    float: left;
+}
+
+.right {
+    margin-bottom: 8%;
+}
+
+.footer {
+    margin: 5%;
 }
