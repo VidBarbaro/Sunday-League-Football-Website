@@ -8,7 +8,8 @@
                 <br>
                 <h1>{{user.firstName}} {{user.lastName}}</h1>
                 <h2>{{user.username}}</h2>
-                <button  mat-raised-button color="accent">Change Photo</button>
+                <button (click)="updateProfileImage()" mat-raised-button color="accent" type="button">Change Photo</button>
+                <mat-progress-bar *ngIf="fileStatus?.status==='progress'" mode="determinate" value="fileStatus?.percentage"></mat-progress-bar>
             </div>
         </div>
         <div>
@@ -52,3 +53,10 @@
         <button type="submit" mat-raised-button color="primary">Save Changes</button>
     </form>
 </mat-card>
+
+<!-- profile image change -->
+<form enctype="multipart/form-data" style="display:none;">
+    <input type="file" accept="image/*" name="profileImage"
+    (change)="onProfileImageChange($any($event).target.files[0].name, $any($event).target.files[0]); onUpdateProfileImage()"
+     id="profile-image-input" placeholder="file">
+</form>

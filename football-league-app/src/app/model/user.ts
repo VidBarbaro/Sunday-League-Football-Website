@@ -1,7 +1,6 @@
 import { Role } from "../enum/role.enum";
 
 export class User {
-    public id: number;
     public userId: string;
     public firstName: string;
     public lastName: string;
@@ -20,6 +19,7 @@ export class User {
         this.lastName = '';
         this.username = '';
         this.email = '';
+        this.logInDateDisplay = null;
         this.active = false;
         this.notLocked = false;
         this.role = Role.USER;

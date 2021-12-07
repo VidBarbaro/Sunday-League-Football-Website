@@ -14,6 +14,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
 
 const MaterialComponents = [
   MatButtonModule,
@@ -32,6 +33,7 @@ const MaterialComponents = [
   MatTabsModule,
   MatMenuModule,
   MatDialogModule,
+  MatProgressBarModule
 ]
 
 @NgModule({

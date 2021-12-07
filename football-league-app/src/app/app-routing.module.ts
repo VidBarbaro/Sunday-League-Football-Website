@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'profile',
+    canActivate: [AuthenticationGuard],
     children: [
         {
           path: '',

@@ -70,3 +70,8 @@ select {
 .footer {
     margin: 5%;
 }
+
+mat-progress-bar {
+    width: 15%;
+    margin-top: 1.5%;
+}
