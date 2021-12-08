@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -29,7 +29,7 @@ interface Users {
   styleUrls: ['./admin.component.css']
 })
 
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
 
   dataSource: MatTableDataSource<User>;
   // users1: Users[];
@@ -62,6 +62,14 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     // console.log(this.userService.getUsers());
     this.getUsers();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  public refreshPage() {
+    window.location.reload()
   }
 
   public getUsers(): void {

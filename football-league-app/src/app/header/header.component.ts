@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationType } from '../enum/notification-type-enum';
+import { Role } from '../enum/role.enum';
 import { AuthenticationService } from '../service/authentication.service';
 import { NotificationService } from '../service/notification.service';
 import { UserService } from '../service/user.service';
@@ -29,7 +30,7 @@ export class HeaderComponent {
 
   ngOnInit() {    
     this.currentUserRole = this.userService.getUserRole();
-    console.log(this.currentUserRole);
+    console.log(this.currentUserRole);    
   }
 
   public onLogOut() {
@@ -38,6 +39,26 @@ export class HeaderComponent {
       this.router.navigate(['/login']);
       this.sendNotification(NotificationType.SUCCESS, 'You have been logged out successfully');
     }
+  }
+
+  public get isAdmin(): boolean {
+    return this.getUserRole() === Role.ADMIN;
+  }
+
+  public get isTeamManager(): boolean {
+    return this.getUserRole() === Role.TEAM_MANAGER;
+  }
+
+  public get isReferee(): boolean {
+    return this.getUserRole() === Role.REFEREE;
+  }
+
+  public get isPlayer(): boolean {
+    return this.getUserRole() === Role.PLAYER
+  }
+
+  private getUserRole(): string {
+    return this.authenticationService.getUserFromLocalCache().role;
   }
 
   private sendNotification(notificationType: NotificationType, message: string): void {

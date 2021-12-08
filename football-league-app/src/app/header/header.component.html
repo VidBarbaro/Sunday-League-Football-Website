@@ -3,11 +3,11 @@
   <div class="routes">
       <a routerLink="/home">Home</a>
       <a routerLink="/results">Results</a>
-      <a routerLink="/league-table">Table</a>
-      <a routerLink="/fixtures">Fixtures</a>
-      <a routerLink="/statistics">Statistics</a>
+      <a [hidden]="isAdmin" routerLink="/league-table">Table</a>
+      <a [hidden]="isAdmin" routerLink="/fixtures">Fixtures</a>
+      <a [hidden]="isAdmin" routerLink="/statistics">Statistics</a>
       <a routerLink="/profile">Profile</a>
-      <a routerLink="/admin">Admin</a>
+      <a [hidden]="!isAdmin" routerLink="/admin">Admin</a>
       <a routerLink="/sign-up">Sign Up</a>
       <a routerLink="/login">Log In</a>
       <a (click)="onLogOut()">Log Out</a>

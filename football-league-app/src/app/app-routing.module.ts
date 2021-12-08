@@ -4,6 +4,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ManagersComponent } from './admin/managers/managers.component';
 import { PlayersComponent } from './admin/players/players.component';
 import { ResetUserPasswordComponent } from './admin/reset-user-password/reset-user-password.component';
+import { Role } from './enum/role.enum';
 import { FixturesComponent } from './fixtures/fixtures.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AuthenticationGuard } from './guard/authentication.guard';
@@ -39,6 +40,9 @@ const routes: Routes = [
     ]},
   { path: 'admin',
     canActivate: [AuthenticationGuard],
+    data: {
+      role: Role.ADMIN
+    },
     children: [
         {
           path: '',
