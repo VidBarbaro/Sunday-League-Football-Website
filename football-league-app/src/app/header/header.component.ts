@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationType } from '../enum/notification-type-enum';
 import { Role } from '../enum/role.enum';
@@ -12,6 +12,7 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  loggedIn: boolean = false;
 
   constructor(
     private router: Router,
@@ -29,11 +30,19 @@ export class HeaderComponent {
   }
 
   ngOnInit() {    
-    this.currentUserRole = this.userService.getUserRole();
     console.log(this.currentUserRole);    
   }
 
+  // public isLoggedIn(): void {
+  //   if (this.authenticationService.isUserLoggedIn()) {
+  //     this.isUserLoggedIn = true;
+  //   }
+  //   this.isUserLoggedIn = false;
+  // }
+
   public onLogOut() {
+    console.log(this.authenticationService.getToken());
+    
     if (this.authenticationService.getToken()) {
       this.authenticationService.logOut();
       this.router.navigate(['/login']);
@@ -42,23 +51,52 @@ export class HeaderComponent {
   }
 
   public get isAdmin(): boolean {
-    return this.getUserRole() === Role.ADMIN;
+    if (this.getUserRole() != null) {
+      return this.getUserRole() === Role.ADMIN;
+    }
+    return false;
   }
 
   public get isTeamManager(): boolean {
-    return this.getUserRole() === Role.TEAM_MANAGER;
+    if (this.getUserRole() != null) {
+      return this.getUserRole() === Role.TEAM_MANAGER;
+    }
+    return false;
   }
 
   public get isReferee(): boolean {
-    return this.getUserRole() === Role.REFEREE;
+    if (this.getUserRole() != null) {
+      return this.getUserRole() === Role.REFEREE;
+    }
+    return false;
   }
 
   public get isPlayer(): boolean {
-    return this.getUserRole() === Role.PLAYER
+    if (this.getUserRole() != null) {
+      return this.getUserRole() === Role.PLAYER
+    }
+    return false;
+  }
+
+  public get isNone(): boolean {
+    if (this.getUserRole() != null) {
+      return false;
+    }
+    return true;
+  }
+
+  public isUserLoggedIn(): boolean {
+    if (this.authenticationService.isUserLoggedIn()) {
+      this.loggedIn = true;
+    }
+    return false;
   }
 
   private getUserRole(): string {
-    return this.authenticationService.getUserFromLocalCache().role;
+    if (this.authenticationService.getUserFromLocalCache() != null) {
+      return this.authenticationService.getUserFromLocalCache().role;
+    }
+    return null;
   }
 
   private sendNotification(notificationType: NotificationType, message: string): void {

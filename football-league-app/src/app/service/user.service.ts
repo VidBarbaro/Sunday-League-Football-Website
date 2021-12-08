@@ -65,6 +65,10 @@ export class UserService {
   }
 
   public getUserRole(): string {
-    return JSON.parse(localStorage.getItem('user')).role;
+    let role = JSON.parse(localStorage.getItem('user')).role;
+    if(role) {
+      return JSON.parse(localStorage.getItem('user')).role;
+    }
+    return null;
   }
 }

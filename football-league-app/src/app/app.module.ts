@@ -43,6 +43,7 @@ import { PopUpComponent } from './pop-ups/edit-user-pop-up/edit-user-pop-up';
 import { NewUserPopUpComponent } from './pop-ups/new-user-pop-up/new-user-pop-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResetUserPasswordComponent } from './admin/reset-user-password/reset-user-password.component';
+import { TeamManagerComponent } from './team-manager/team-manager.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ResetUserPasswordComponent } from './admin/reset-user-password/reset-us
     ForbiddenComponent,
     NewUserPopUpComponent,
     PopUpComponent,
-    ResetUserPasswordComponent
+    ResetUserPasswordComponent,
+    TeamManagerComponent
   ],
   imports: [
     BrowserModule,

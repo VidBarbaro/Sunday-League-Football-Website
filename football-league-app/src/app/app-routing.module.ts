@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ResultsComponent } from './results/results.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { TeamManagerComponent } from './team-manager/team-manager.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -53,6 +54,18 @@ const routes: Routes = [
           component: ResetUserPasswordComponent
         }
     ]},
+  { path: 'team-manager',
+  canActivate: [AuthenticationGuard],
+  data: {
+    role: Role.TEAM_MANAGER
+  },
+  children: [
+    {
+      path: '',
+      component: TeamManagerComponent
+    }
+  ]
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
 ];

@@ -8,9 +8,10 @@
       <a [hidden]="isAdmin" routerLink="/statistics">Statistics</a>
       <a routerLink="/profile">Profile</a>
       <a [hidden]="!isAdmin" routerLink="/admin">Admin</a>
-      <a routerLink="/sign-up">Sign Up</a>
-      <a routerLink="/login">Log In</a>
-      <a (click)="onLogOut()">Log Out</a>
+      <a [hidden]="!isTeamManager" routerLink="/team-manager">Team Manager</a>
+      <a [hidden]="!isNone" routerLink="/sign-up">Sign Up</a>
+      <a [hidden]="!isNone" routerLink="/login">Log In</a>
+      <a [hidden]="isNone" (click)="onLogOut()">Log Out</a>
 
 
   </div>
