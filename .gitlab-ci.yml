@@ -21,6 +21,7 @@ stages:          # List of stages for jobs, and their order of execution
 build-job:
   stage: build
   script:
+    - cd backend_football
     - mvn clean package
     - echo "Completed building"
 
