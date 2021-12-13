@@ -2,7 +2,7 @@
   <div><a routerLink="/home"><img src="../assets/images/logo.png" alt="Logo" class="logo"></a></div>
   <div class="routes">
       <a routerLink="/home">Home</a>
-      <a routerLink="/results">Results</a>
+      <a [hidden]="isAdmin" routerLink="/results">Results</a>
       <a [hidden]="isAdmin" routerLink="/league-table">Table</a>
       <a [hidden]="isAdmin" routerLink="/fixtures">Fixtures</a>
       <a [hidden]="isAdmin" routerLink="/statistics">Statistics</a>

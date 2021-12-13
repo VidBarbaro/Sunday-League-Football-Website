@@ -7,4 +7,6 @@ import com.individuals3.backend_football.domain.User;
 public interface TeamPlayersService {
 
     TeamPlayers addPlayerToTeam(TeamPlayers teamPlayers);
+
+    boolean removePlayerFromTeam(Long teamPlayersId);
 }
