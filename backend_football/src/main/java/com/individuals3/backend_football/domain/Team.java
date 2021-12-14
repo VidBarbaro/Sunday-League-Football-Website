@@ -17,14 +17,16 @@ public class Team implements Serializable {
     private String teamId;
     private String name;
     private String clubLogoUrl;
+    private Long teamManagerId;
 
     public Team() {}
 
-    public Team(Long id, String teamId, String name, String clubLogoUrl) {
+    public Team(Long id, String teamId, String name, String clubLogoUrl, Long teamManagerId) {
         this.id = id;
         this.teamId = teamId;
         this.name = name;
         this.clubLogoUrl = clubLogoUrl;
+        this.teamManagerId = teamManagerId;
     }
 
     public Long getId() {
@@ -57,5 +59,13 @@ public class Team implements Serializable {
 
     public void setClubLogoUrl(String clubLogoUrl) {
         this.clubLogoUrl = clubLogoUrl;
+    }
+
+    public Long getTeamManagerId() {
+        return teamManagerId;
+    }
+
+    public void setTeamManagerId(Long teamManagerId) {
+        this.teamManagerId = teamManagerId;
     }
 }

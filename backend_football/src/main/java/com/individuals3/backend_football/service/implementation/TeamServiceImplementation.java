@@ -42,6 +42,7 @@ import static org.springframework.http.MediaType.*;
 @Qualifier("TeamDetailsService")
 public class TeamServiceImplementation implements TeamService {
 
+    private static final String NO_TEAM_FOUND_BY_TEAM_MANAGER_ID = "No team found by team manager id ";
     private TeamRepository teamRepository;
     private Logger LOGGER = LoggerFactory.getLogger(getClass());
     private BCryptPasswordEncoder passwordEncoder;
@@ -73,13 +74,28 @@ public class TeamServiceImplementation implements TeamService {
     }
 
     @Override
-    public Team addNewTeam(String teamName, MultipartFile profileImage) throws IOException, NotAnImageFileException {
+    public Team findTeamByTeamManagerId(Long teamManagerId) throws TeamNotFoundException {
+        Team team = teamRepository.findTeamByTeamManagerId(teamManagerId);
+        if (team == null) {
+            LOGGER.error(NO_TEAM_FOUND_BY_TEAM_MANAGER_ID + teamManagerId);
+            throw new TeamNotFoundException(NO_TEAM_FOUND_BY_TEAM_MANAGER_ID + teamManagerId);
+        }
+        else {
+            teamRepository.save(team);
+            LOGGER.info(RETURNING_FOUND_TEAM_BY_TEAM_NAME + teamManagerId);
+            return team;
+        }
+    }
+
+    @Override
+    public Team addNewTeam(String teamName, MultipartFile profileImage, Long teamManagerId) throws IOException, NotAnImageFileException {
         Team team = new Team();
         team.setTeamId(generateTeamId());
         team.setName(teamName);
 //        team.setClubLogoUrl(getTe);
         teamRepository.save(team);
         saveProfileImage(team, profileImage);
+        team.setTeamManagerId(teamManagerId);
         return team;
     }
 
@@ -90,12 +106,6 @@ public class TeamServiceImplementation implements TeamService {
         FileUtils.deleteDirectory(new File(teamFolder.toString()));
         teamRepository.deleteById(team.getId());
     }
-
-    @Override
-    public void removePlayerFromTeam(User player, Team team) {
-
-    }
-
 
     private String generateTeamId() {
         return RandomStringUtils.randomNumeric(10);

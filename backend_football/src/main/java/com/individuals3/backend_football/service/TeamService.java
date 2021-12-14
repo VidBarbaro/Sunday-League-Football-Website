@@ -13,9 +13,10 @@ public interface TeamService {
 
     Team findTeamByName(String teamName) throws TeamNotFoundException;
 
-    Team addNewTeam(String teamName, MultipartFile profileImage) throws IOException, NotAnImageFileException;
+    Team findTeamByTeamManagerId(Long teamManagerId) throws TeamNotFoundException;
+
+    Team addNewTeam(String teamName, MultipartFile profileImage, Long teamManagerId) throws IOException, NotAnImageFileException;
 
     void deleteTeam(String teamName) throws IOException;
 
-    void removePlayerFromTeam(User player, Team team);
 }

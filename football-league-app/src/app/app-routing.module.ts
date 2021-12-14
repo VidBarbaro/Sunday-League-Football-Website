@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ResultsComponent } from './results/results.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { MyTeamComponent } from './team-manager/my-team/my-team.component';
 import { TeamManagerComponent } from './team-manager/team-manager.component';
 
 const routes: Routes = [
@@ -61,8 +62,8 @@ const routes: Routes = [
   },
   children: [
     {
-      path: '',
-      component: TeamManagerComponent
+      path: 'my-team',
+      component: MyTeamComponent
     }
   ]
   },

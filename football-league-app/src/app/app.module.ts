@@ -44,6 +44,7 @@ import { NewUserPopUpComponent } from './pop-ups/new-user-pop-up/new-user-pop-up
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResetUserPasswordComponent } from './admin/reset-user-password/reset-user-password.component';
 import { TeamManagerComponent } from './team-manager/team-manager.component';
+import { MyTeamComponent } from './team-manager/my-team/my-team.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { TeamManagerComponent } from './team-manager/team-manager.component';
     NewUserPopUpComponent,
     PopUpComponent,
     ResetUserPasswordComponent,
-    TeamManagerComponent
+    TeamManagerComponent,
+    MyTeamComponent
   ],
   imports: [
     BrowserModule,

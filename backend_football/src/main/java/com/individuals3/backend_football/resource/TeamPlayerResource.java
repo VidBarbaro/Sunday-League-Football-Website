@@ -2,6 +2,7 @@ package com.individuals3.backend_football.resource;
 
 import com.individuals3.backend_football.domain.HttpResponse;
 import com.individuals3.backend_football.domain.TeamPlayers;
+import com.individuals3.backend_football.domain.User;
 import com.individuals3.backend_football.service.TeamPlayersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -25,6 +27,11 @@ public class TeamPlayerResource {
         this.teamPlayersService = teamPlayersService;
     }
 
+    @GetMapping({"{teamId}"})
+    public ArrayList<User> getPlayersFromTeam(@PathVariable("teamId") Long teamId) {
+        return teamPlayersService.getPlayersForTeam(teamId);
+    }
+
     @PostMapping({"addPlayerToTeam"})
     @PreAuthorize("hasAnyAuthority('team:modify')")
     public TeamPlayers addPlayerToTeam(@RequestBody TeamPlayers teamPlayers) {
@@ -37,12 +44,6 @@ public class TeamPlayerResource {
         teamPlayersService.removePlayerFromTeam(teamPlayersId);
         return response(OK, PLAYER_REMOVED_FROM_TEAM_SUCCESSFULLY);
     }
-//    public boolean removePlayerFromTeam(@RequestBody Long teamPlayersId) {
-//        if(teamPlayersService.removePlayerFromTeam(teamPlayersId)) {
-//            return true;
-//        }
-//        return false;
-//    }
 
     private ResponseEntity<HttpResponse> response(HttpStatus httpStatus, String message) {
         return new ResponseEntity<>(new HttpResponse(httpStatus.value(), httpStatus, httpStatus.getReasonPhrase().toUpperCase(),

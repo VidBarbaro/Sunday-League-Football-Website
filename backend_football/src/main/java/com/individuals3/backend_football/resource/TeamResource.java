@@ -4,6 +4,7 @@ import com.individuals3.backend_football.domain.HttpResponse;
 import com.individuals3.backend_football.domain.Team;
 import com.individuals3.backend_football.domain.User;
 import com.individuals3.backend_football.exception.domain.*;
+import com.individuals3.backend_football.exception.team.TeamNotFoundException;
 import com.individuals3.backend_football.repository.TeamRepository;
 import com.individuals3.backend_football.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,24 @@ public class TeamResource extends ExceptionHandling {
         this.teamRepository = teamRepository;
     }
 
+    @GetMapping("/name/{teamName}")
+    public ResponseEntity<Team> getTeamByTeamName(@PathVariable("teamName") String teamName) throws TeamNotFoundException {
+        Team team = teamService.findTeamByName(teamName);
+        return new ResponseEntity<>(team, OK);
+    }
+
+    @GetMapping("/managerId/{teamManagerId}")
+    public ResponseEntity<Team> getTeamByTeamManagerId(@PathVariable("teamManagerId") Long teamManagerId) throws TeamNotFoundException {
+        Team team = teamService.findTeamByTeamManagerId(teamManagerId);
+        return new ResponseEntity<>(team, OK);
+    }
+
     @PostMapping("/add")
     @PreAuthorize("hasAnyAuthority('team:add')")
     public ResponseEntity<Team> addNewTeam(@RequestParam("teamName") String teamName,
+                                           @RequestParam("teamManagerId") Long teamManagerId,
                                            @RequestParam(value = "clubLogo", required = false) MultipartFile profileImage) throws IOException, NotAnImageFileException {
-        Team newTeam = teamService.addNewTeam(teamName, profileImage);
+        Team newTeam = teamService.addNewTeam(teamName, profileImage, teamManagerId);
         return new ResponseEntity<>(newTeam, OK);
     }
 
@@ -46,6 +60,7 @@ public class TeamResource extends ExceptionHandling {
         teamService.deleteTeam(teamName);
         return response(OK, TEAM_DELETED_SUCCESSFULLY);
     }
+
 
     @PostMapping("/add/{teamName}")
     @PreAuthorize("hasAnyAuthority('team:modify')")
