@@ -1,0 +1,24 @@
+<div class="title">
+    <h1 class="mat-display-3 title">My Team</h1>
+</div>
+<div *ngIf="!team" class="main-card">
+    <mat-card>
+        <div class="sub-cardl">
+            <mat-card-title>
+                You do not have a team yet
+            </mat-card-title>
+            <mat-card-subtitle>
+                If you wish to participate in this league you must create a team and add players to it. The start of your journey is just a click away.
+            </mat-card-subtitle>
+        </div>
+        <div class="sub-cardr">
+            <a routerLink="create-my-team">
+                <mat-icon>add_circle</mat-icon>
+            </a>
+        </div>
+    </mat-card>
+</div>
+
+<div *ngIf="team">
+    Has team
+</div>

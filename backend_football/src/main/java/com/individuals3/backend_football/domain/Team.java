@@ -12,16 +12,16 @@ public class Team implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long id;
     private String teamId;
     private String name;
     private String clubLogoUrl;
-    private Long teamManagerId;
+    private String teamManagerId;
 
     public Team() {}
 
-    public Team(Long id, String teamId, String name, String clubLogoUrl, Long teamManagerId) {
+    public Team(Long id, String teamId, String name, String clubLogoUrl, String teamManagerId) {
         this.id = id;
         this.teamId = teamId;
         this.name = name;
@@ -61,11 +61,11 @@ public class Team implements Serializable {
         this.clubLogoUrl = clubLogoUrl;
     }
 
-    public Long getTeamManagerId() {
+    public String getTeamManagerId() {
         return teamManagerId;
     }
 
-    public void setTeamManagerId(Long teamManagerId) {
+    public void setTeamManagerId(String teamManagerId) {
         this.teamManagerId = teamManagerId;
     }
 }

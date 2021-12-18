@@ -4,13 +4,19 @@ import com.individuals3.backend_football.domain.Team;
 import com.individuals3.backend_football.domain.User;
 import com.individuals3.backend_football.domain.UserPrincipal;
 import com.individuals3.backend_football.enumeration.Role;
+import com.individuals3.backend_football.exception.domain.EmailExistsException;
 import com.individuals3.backend_football.exception.domain.NotAnImageFileException;
+import com.individuals3.backend_football.exception.domain.UserNotFoundException;
+import com.individuals3.backend_football.exception.domain.UsernameExistsException;
+import com.individuals3.backend_football.exception.team.ManagerAlreadyHasTeamException;
+import com.individuals3.backend_football.exception.team.TeamNameExistsException;
 import com.individuals3.backend_football.exception.team.TeamNotFoundException;
 import com.individuals3.backend_football.repository.TeamRepository;
 import com.individuals3.backend_football.service.EmailService;
 import com.individuals3.backend_football.service.LoginAttemptService;
 import com.individuals3.backend_football.service.TeamService;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +39,7 @@ import java.util.*;
 import static com.individuals3.backend_football.constant.FileConstant.*;
 import static com.individuals3.backend_football.constant.FileConstant.FILE_SAVED_IN_FILE_SYSTEM;
 import static com.individuals3.backend_football.constant.TeamImplementationConstant.*;
+import static com.individuals3.backend_football.constant.UserImplementationConstant.*;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.springframework.http.MediaType.*;
@@ -58,37 +65,19 @@ public class TeamServiceImplementation implements TeamService {
         this.emailService = emailService;
     }
 
-
     @Override
     public Team findTeamByName(String teamName) throws TeamNotFoundException {
-        Team team = teamRepository.findTeamByName(teamName);
-        if (team == null) {
-            LOGGER.error(NO_TEAM_FOUND_BY_TEAM_NAME + teamName);
-            throw new TeamNotFoundException(NO_TEAM_FOUND_BY_TEAM_NAME + teamName);
-        }
-        else {
-            teamRepository.save(team);
-            LOGGER.info(RETURNING_FOUND_TEAM_BY_TEAM_NAME + teamName);
-            return team;
-        }
+        return teamRepository.findTeamByName(teamName);
     }
 
     @Override
-    public Team findTeamByTeamManagerId(Long teamManagerId) throws TeamNotFoundException {
-        Team team = teamRepository.findTeamByTeamManagerId(teamManagerId);
-        if (team == null) {
-            LOGGER.error(NO_TEAM_FOUND_BY_TEAM_MANAGER_ID + teamManagerId);
-            throw new TeamNotFoundException(NO_TEAM_FOUND_BY_TEAM_MANAGER_ID + teamManagerId);
-        }
-        else {
-            teamRepository.save(team);
-            LOGGER.info(RETURNING_FOUND_TEAM_BY_TEAM_NAME + teamManagerId);
-            return team;
-        }
+    public Team findTeamByTeamManagerId(String teamManagerId) throws TeamNotFoundException {
+        return teamRepository.findTeamByTeamManagerId(teamManagerId);
     }
 
     @Override
-    public Team addNewTeam(String teamName, MultipartFile profileImage, Long teamManagerId) throws IOException, NotAnImageFileException {
+    public Team addNewTeam(String teamName, MultipartFile profileImage, String teamManagerId) throws IOException, NotAnImageFileException, TeamNameExistsException, ManagerAlreadyHasTeamException, TeamNotFoundException {
+        validateNewTeam(teamName, teamManagerId);
         Team team = new Team();
         team.setTeamId(generateTeamId());
         team.setName(teamName);
@@ -132,5 +121,20 @@ public class TeamServiceImplementation implements TeamService {
     private String setProfileImageUrl(String teamName) {
         return ServletUriComponentsBuilder.fromCurrentContextPath().path(TEAM_IMAGE_PATH + teamName + FORWARD_SLASH
                 + teamName + DOT + JPG_EXTENSION).toUriString();
+    }
+
+    private Team validateNewTeam(String teamName, String managerId) throws TeamNotFoundException, TeamNameExistsException, ManagerAlreadyHasTeamException {
+        Team teamByTeamName = findTeamByName(teamName);
+        Team teamByManagerId = findTeamByTeamManagerId(managerId);
+        if(StringUtils.isNotBlank(teamName)) {
+            if(teamByTeamName != null) {
+                throw new TeamNameExistsException(TEAM_NAME_ALREADY_EXISTS);
+            }
+            if(teamByManagerId != null) {
+                throw new ManagerAlreadyHasTeamException(MANAGER_ALREADY_HAS_TEAM);
+            }
+            return teamByTeamName;
+        }
+        return null;
     }
 }

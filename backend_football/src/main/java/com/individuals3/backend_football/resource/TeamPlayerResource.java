@@ -28,7 +28,7 @@ public class TeamPlayerResource {
     }
 
     @GetMapping({"{teamId}"})
-    public ArrayList<User> getPlayersFromTeam(@PathVariable("teamId") Long teamId) {
+    public ArrayList<User> getPlayersFromTeam(@PathVariable("teamId") String teamId) {
         return teamPlayersService.getPlayersForTeam(teamId);
     }
 

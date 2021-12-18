@@ -4,6 +4,8 @@ import com.individuals3.backend_football.domain.HttpResponse;
 import com.individuals3.backend_football.domain.Team;
 import com.individuals3.backend_football.domain.User;
 import com.individuals3.backend_football.exception.domain.*;
+import com.individuals3.backend_football.exception.team.ManagerAlreadyHasTeamException;
+import com.individuals3.backend_football.exception.team.TeamNameExistsException;
 import com.individuals3.backend_football.exception.team.TeamNotFoundException;
 import com.individuals3.backend_football.repository.TeamRepository;
 import com.individuals3.backend_football.service.TeamService;
@@ -40,7 +42,7 @@ public class TeamResource extends ExceptionHandling {
     }
 
     @GetMapping("/managerId/{teamManagerId}")
-    public ResponseEntity<Team> getTeamByTeamManagerId(@PathVariable("teamManagerId") Long teamManagerId) throws TeamNotFoundException {
+    public ResponseEntity<Team> getTeamByTeamManagerId(@PathVariable("teamManagerId") String teamManagerId) throws TeamNotFoundException {
         Team team = teamService.findTeamByTeamManagerId(teamManagerId);
         return new ResponseEntity<>(team, OK);
     }
@@ -48,8 +50,8 @@ public class TeamResource extends ExceptionHandling {
     @PostMapping("/add")
     @PreAuthorize("hasAnyAuthority('team:add')")
     public ResponseEntity<Team> addNewTeam(@RequestParam("teamName") String teamName,
-                                           @RequestParam("teamManagerId") Long teamManagerId,
-                                           @RequestParam(value = "clubLogo", required = false) MultipartFile profileImage) throws IOException, NotAnImageFileException {
+                                           @RequestParam("teamManagerId") String teamManagerId,
+                                           @RequestParam(value = "clubLogo", required = false) MultipartFile profileImage) throws IOException, NotAnImageFileException, TeamNameExistsException, ManagerAlreadyHasTeamException, TeamNotFoundException {
         Team newTeam = teamService.addNewTeam(teamName, profileImage, teamManagerId);
         return new ResponseEntity<>(newTeam, OK);
     }

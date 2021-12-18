@@ -50,6 +50,13 @@ export class UserService {
     return null;
   }
 
+  public getCurrentUserFromLocalCache(): User {
+    if(localStorage.getItem('user')) {
+      return JSON.parse(localStorage.getItem('user'));
+    }
+    return null;
+  }
+
   public createUserFormData(loggedInUsername: string, user: User, profileImage: File): FormData {
     const formData = new FormData();
     formData.append('currentUsername', loggedInUsername);

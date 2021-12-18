@@ -32,17 +32,17 @@ public class TeamPlayersServiceImplementation implements TeamPlayersService {
 
     @Override
     public boolean removePlayerFromTeam(Long teamPlayersId) {
-        if (teamPlayersRepository.findById(teamPlayersId).isPresent()) {
-            teamPlayersRepository.deleteById(teamPlayersId);
-            return true;
-        }
+//        if (teamPlayersRepository.findById(teamPlayersId).isPresent()) {
+//            teamPlayersRepository.deleteById(teamPlayersId);
+//            return true;
+//        }
         return false;
     }
 
     @Override
-    public ArrayList<User> getPlayersForTeam(Long teamId) {
+    public ArrayList<User> getPlayersForTeam(String teamId) {
         ArrayList<User> players = new ArrayList<User>();
-        TeamPlayers[] teamPlayers = teamPlayersRepository.findTeamPlayersByTeamId(teamId);
+        TeamPlayers[] teamPlayers = teamPlayersRepository.findTeamPlayersByTeam_TeamId(teamId);
         for (int i=0; i<teamPlayers.length; i++) {
             players.add(userRepository.findUserById(teamPlayers[i].getPlayer().getId()));
         }

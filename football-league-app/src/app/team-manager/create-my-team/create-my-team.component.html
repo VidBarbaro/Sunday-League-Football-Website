@@ -1,0 +1,15 @@
+<mat-card>
+    <form #newTeamForm="ngForm" (ngSubmit)="saveNewTeam(newTeamForm)">
+        <div class="header">
+            Create your team!
+        </div>
+        <div>
+            <label for="teamName">Team Name: </label>
+            <input ngModel type="text" name="teamName" required class="input">
+            <label for="clubLogo">Profile Picture: </label>
+            <input ngModel type="file" accept="image/*" name="clubLogo" 
+            (change)="onProfileImageChange($any($event).target.files[0].name, $any($event).target.files[0])">
+        </div>
+        <button type="submit" [disabled]="newTeamForm.invalid">Create Team</button>
+    </form>
+</mat-card>

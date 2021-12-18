@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ResultsComponent } from './results/results.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { CreateMyTeamComponent } from './team-manager/create-my-team/create-my-team.component';
 import { MyTeamComponent } from './team-manager/my-team/my-team.component';
 import { TeamManagerComponent } from './team-manager/team-manager.component';
 
@@ -64,6 +65,10 @@ const routes: Routes = [
     {
       path: 'my-team',
       component: MyTeamComponent
+    },
+    {
+      path: 'my-team/create-my-team',
+      component: CreateMyTeamComponent
     }
   ]
   },

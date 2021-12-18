@@ -1,0 +1,24 @@
+.main-card {
+    margin: 7%;
+}
+
+.sub-cardl {
+    float: left;
+}
+
+.sub-cardr {
+    float: right;
+}
+
+mat-card {
+    height: 50px;   
+}
+
+mat-icon {
+    margin-top: 50%;
+}
+
+.title {
+    margin: 3% auto;
+    text-align: center;
+}
