@@ -1,0 +1,421 @@
+<Project>
+  <Name>IndividualS3</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>SundayLeague</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>JwtAuthenticationFilter</Name>
+        <Access>Public</Access>
+        <Location left="112" top="248" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>JwtTokenProvider</Name>
+        <Access>Public</Access>
+        <Location left="112" top="140" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>UserRepository</Name>
+        <Access>Public</Access>
+        <Location left="396" top="140" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IUserService</Name>
+        <Access>Public</Access>
+        <Location left="396" top="248" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>UserServiceImplementation</Name>
+        <Access>Public</Access>
+        <Location left="396" top="350" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IUserRepository</Name>
+        <Access>Public</Access>
+        <Location left="396" top="637" />
+        <Size width="162" height="61" />
+        <Collapsed>True</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>User</Name>
+        <Access>Public</Access>
+        <Location left="396" top="738" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>UserPrincipal</Name>
+        <Access>Public</Access>
+        <Location left="160" top="738" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>EmailService</Name>
+        <Access>Public</Access>
+        <Location left="15" top="455" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LoginAttemptService</Name>
+        <Access>Public</Access>
+        <Location left="230" top="455" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AuthenticationSuccess</Name>
+        <Access>Public</Access>
+        <Location left="230" top="566" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AuthenticationFailiure</Name>
+        <Access>Public</Access>
+        <Location left="46" top="566" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Team</Name>
+        <Access>Public</Access>
+        <Location left="630" top="738" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ITeamRepository</Name>
+        <Access>Public</Access>
+        <Location left="630" top="637" />
+        <Size width="162" height="61" />
+        <Collapsed>True</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>TeamServiceImplementation</Name>
+        <Access>Public</Access>
+        <Location left="630" top="350" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ITeamService</Name>
+        <Access>Public</Access>
+        <Location left="630" top="248" />
+        <Size width="162" height="61" />
+        <Collapsed>True</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>TeamRepository</Name>
+        <Access>Public</Access>
+        <Location left="630" top="140" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TeamPlayer</Name>
+        <Access>Public</Access>
+        <Location left="860" top="738" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ITeamPlayerRepository</Name>
+        <Access>Public</Access>
+        <Location left="860" top="637" />
+        <Size width="162" height="61" />
+        <Collapsed>True</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>TeamPlayerServiceImplementation</Name>
+        <Access>Public</Access>
+        <Location left="860" top="350" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ITeamPlayerService</Name>
+        <Access>Public</Access>
+        <Location left="860" top="248" />
+        <Size width="162" height="61" />
+        <Collapsed>True</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>TeamPlayerRepository</Name>
+        <Access>Public</Access>
+        <Location left="860" top="140" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Match</Name>
+        <Access>Public</Access>
+        <Location left="1090" top="738" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IMatchRepository</Name>
+        <Access>Public</Access>
+        <Location left="1090" top="637" />
+        <Size width="162" height="61" />
+        <Collapsed>True</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>MatchServiceImplementation</Name>
+        <Access>Public</Access>
+        <Location left="1090" top="350" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IMatchService</Name>
+        <Access>Public</Access>
+        <Location left="1090" top="248" />
+        <Size width="162" height="61" />
+        <Collapsed>True</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>MatchRepository</Name>
+        <Access>Public</Access>
+        <Location left="1090" top="140" />
+        <Size width="162" height="77" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="1" second="0">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="2" second="1">
+        <Label>has</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="2" second="3">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Realization" first="4" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="4" second="5">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>477</X>
+          <Y>612</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="5" second="6">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="7" second="6">
+        <Label>has</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="4" second="8">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>477</X>
+          <Y>422</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>92</X>
+          <Y>422</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="4" second="9">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>313</X>
+          <Y>424</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="10" second="9">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>309</X>
+          <Y>532</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="11" second="9">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>309</X>
+          <Y>525</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="13" second="12">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="14" second="13">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>711</X>
+          <Y>612</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Realization" first="14" second="15">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="16" second="15">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="21" second="20">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Realization" first="19" second="20">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="19" second="18">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>941</X>
+          <Y>612</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="18" second="17">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="23" second="22">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Association" first="24" second="23">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1171</X>
+          <Y>612</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+      <Relationship type="Realization" first="24" second="25">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="26" second="25">
+        <Label>has</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>1</EndRole>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
