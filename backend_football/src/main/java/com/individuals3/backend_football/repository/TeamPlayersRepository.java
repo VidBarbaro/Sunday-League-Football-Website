@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TeamPlayersRepository extends JpaRepository<TeamPlayers, Long> {
 
-    TeamPlayers[] findTeamPlayersByTeam_TeamId(String teamId);
+//    TeamPlayers[] findTeamPlayersByTeam_TeamId(String teamId);
 
-    TeamPlayers[] findTeamPlayersByTeamId(Long teamId);
+//    TeamPlayers[] findTeamPlayersByTeamId(Long teamId);
 }

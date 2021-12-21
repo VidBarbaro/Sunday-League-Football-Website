@@ -2,9 +2,6 @@ package com.individuals3.backend_football.domain;
 
 import javax.persistence.*;
 
-import com.individuals3.backend_football.domain.User;
-import com.individuals3.backend_football.domain.Team;
-
 @Entity
 @Table(name = "team_players_join")
 public class TeamPlayers {
@@ -16,11 +13,20 @@ public class TeamPlayers {
 
     @ManyToOne
     @JoinColumn(name = "teamId")
-    private Team team;
+    private Team teamId;
 
     @ManyToOne
     @JoinColumn(name = "playerId")
-    private User player;
+    private User playerId;
+
+    public TeamPlayers(Long id, Team team, User player) {
+        this.id = id;
+        this.teamId = team;
+        this.playerId = player;
+    }
+
+    public TeamPlayers() {
+    }
 
     public Long getId() {
         return id;
@@ -30,19 +36,19 @@ public class TeamPlayers {
         this.id = id;
     }
 
-    public Team getTeam() {
-        return team;
+    public Team getTeamId() {
+        return teamId;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setTeamId(Team team) {
+        this.teamId = team;
     }
 
-    public User getPlayer() {
-        return player;
+    public User getPlayerId() {
+        return playerId;
     }
 
-    public void setPlayer(User player) {
-        this.player = player;
+    public void setPlayerId(User player) {
+        this.playerId = player;
     }
 }

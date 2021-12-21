@@ -41,11 +41,12 @@ public class TeamPlayersServiceImplementation implements TeamPlayersService {
 
     @Override
     public ArrayList<User> getPlayersForTeam(String teamId) {
-        ArrayList<User> players = new ArrayList<User>();
-        TeamPlayers[] teamPlayers = teamPlayersRepository.findTeamPlayersByTeam_TeamId(teamId);
-        for (int i=0; i<teamPlayers.length; i++) {
-            players.add(userRepository.findUserById(teamPlayers[i].getPlayer().getId()));
-        }
-        return players;
+//        ArrayList<User> players = new ArrayList<User>();
+//        TeamPlayers[] teamPlayers = teamPlayersRepository.findTeamPlayersByTeam_TeamId(teamId);
+//        for (int i=0; i<teamPlayers.length; i++) {
+//            players.add(userRepository.findUserById(teamPlayers[i].getPlayer().getId()));
+//        }
+//        return players;
+        return null;
     }
 }
