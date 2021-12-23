@@ -12,5 +12,5 @@ public interface TeamPlayersService {
 
     boolean removePlayerFromTeam(Long teamPlayersId);
 
-    ArrayList<User> getPlayersForTeam(String teamName);
+    ArrayList<User> getPlayersForTeam(Long teamName);
 }

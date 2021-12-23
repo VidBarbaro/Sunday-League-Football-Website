@@ -8,4 +8,6 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
     Team findTeamByName(String teamName);
 
     Team findTeamByTeamManagerId(String teamManagerId);
+
+    Team findTeamById(Long id);
 }

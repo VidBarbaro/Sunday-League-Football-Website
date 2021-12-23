@@ -46,6 +46,7 @@ import { ResetUserPasswordComponent } from './admin/reset-user-password/reset-us
 import { TeamManagerComponent } from './team-manager/team-manager.component';
 import { MyTeamComponent } from './team-manager/my-team/my-team.component';
 import { CreateMyTeamComponent } from './team-manager/create-my-team/create-my-team.component';
+import { AddPlayerPopUpComponent } from './pop-ups/add-player-pop-up/add-player-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { CreateMyTeamComponent } from './team-manager/create-my-team/create-my-t
     ResetUserPasswordComponent,
     TeamManagerComponent,
     MyTeamComponent,
-    CreateMyTeamComponent
+    CreateMyTeamComponent,
+    AddPlayerPopUpComponent
   ],
   imports: [
     BrowserModule,

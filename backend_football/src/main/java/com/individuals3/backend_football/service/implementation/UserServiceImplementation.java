@@ -186,6 +186,11 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
     }
 
     @Override
+    public List<User> getAvailablePlayers() {
+        return userRepository.findUsersByIsActive(false);
+    }
+
+    @Override
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }

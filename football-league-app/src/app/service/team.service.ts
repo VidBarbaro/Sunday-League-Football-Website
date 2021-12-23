@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Team } from "../model/team";
+import { TeamPlayer } from "../model/teamPlayer";
 import { User } from "../model/user";
 
 @Injectable({
@@ -17,7 +18,7 @@ export class TeamService {
         return this.http.get<Team>(`${this.host}/team/managerId/${teamManagerId}`);
     }
 
-    public getPlayersByTeamName(teamId: string): Observable<User[]> {
+    public getPlayersByTeamId(teamId: number): Observable<User[]> {
         return this.http.get<User[]>(`${this.host}/teamPlayers/${teamId}`);
     }
 
@@ -25,6 +26,10 @@ export class TeamService {
     public addTeam(formData: FormData): Observable<Team> {
         return this.http.post<Team>(`${this.host}/team/add`, formData);
     }
+
+    public addPlayerToTeam(teamPlayer: TeamPlayer): Observable<TeamPlayer> {
+        return this.http.post<TeamPlayer>(`${this.host}/teamPlayers/addPlayerToTeam`, teamPlayer);
+      } 
 
     public addTeamToLocalCache(team: Team): void {
         localStorage.setItem('team', JSON.stringify(team));
@@ -47,6 +52,13 @@ export class TeamService {
           }
           return null;
     }
+
+    // public createTeamPlayerFormData(teamId: Team, userId: User): FormData {
+    //     const formData = new FormData();
+    //     formData.append('teamId', teamId);
+    //     formData.append('userId', userId);
+    //     return formData;
+    // }
     
     public createTeamFormData(managerId: string, teamName: string, profileImage: File): FormData {
         const formData = new FormData();

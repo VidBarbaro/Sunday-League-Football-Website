@@ -6,7 +6,7 @@
       <a [hidden]="isAdmin" routerLink="/league-table">Table</a>
       <a [hidden]="isAdmin" routerLink="/fixtures">Fixtures</a>
       <a [hidden]="isAdmin" routerLink="/statistics">Statistics</a>
-      <a routerLink="/profile">Profile</a>
+      <a [hidden]="isNone" routerLink="/profile">Profile</a>
       <a [hidden]="!isAdmin" routerLink="/admin">Admin</a>
       <a [hidden]="!isTeamManager" routerLink="/team-manager">Team Manager</a>
       <a [hidden]="!isNone" routerLink="/sign-up">Sign Up</a>

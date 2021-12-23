@@ -1,0 +1,32 @@
+<div class="main">
+    <div class="content firstTab">
+        <h1>Add Player</h1>
+    </div>
+    <form #addPlayer="ngForm" (ngSubmit)="getAvailablePlayers()">
+    <div class="content">
+        <table>
+            <thead>
+                <th>Photo</th>
+                <th>Username</th>
+                <th>Choose</th>
+            </thead>
+            <tbody *ngFor="let player of players">
+                <tr>
+                    <td>
+                        <img height="40" width="40" src="{{player?.profileImageUrl}}" alt="">
+                    </td>
+                    <td>{{player?.username}}</td>
+                    <td>
+                        <button (click)="getUserByUsername(player.username)"><mat-icon>add</mat-icon></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="content">
+        <button type="submit" [disabled]="addPlayer.invalid">
+            Add Choosen Players
+        </button>
+    </div>
+    </form>
+</div>

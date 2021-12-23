@@ -20,5 +20,42 @@
 </div>
 
 <div *ngIf="team">
-    Has team
+    <div class="toolbar">
+        <form>
+            <input name="searchTerm" #searchInput="ngModel" ngModel (ngModelChange)="searchUsers(searchInput.value)" type="search" placeholder="Search users...">
+         </form>
+          <button type="button" class="newUser" (click)="openAddPlayer()">
+            + Add Player
+          </button>
+    </div>
+    
+    <div class="table">
+        <table>
+            <thead>
+                <th>Photo</th>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Remove</th>
+            </thead>
+            <tbody *ngFor="let appUser of players">
+                <tr>
+                    <td>
+                        <img height="40" width="40" src="{{appUser?.profileImageUrl}}" alt="">
+                    </td>
+                    <td>{{appUser?.userId}}</td>
+                    <td>{{appUser?.firstName}}</td>
+                    <td>{{appUser?.lastName}}</td>
+                    <td>{{appUser?.username}}</td>
+                    <td>{{appUser?.email}}</td>
+                    <td>
+                        <button (click)="onRemovePlayer(appUser.username)"><mat-icon>delete</mat-icon></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
 </div>

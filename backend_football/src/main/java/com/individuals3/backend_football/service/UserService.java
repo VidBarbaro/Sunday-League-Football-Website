@@ -14,6 +14,8 @@ public interface UserService {
 
     List<User> getUsers();
 
+    List<User> getAvailablePlayers();
+
     User findUserByUsername(String username);
 
     User findUserByEmail(String email);
