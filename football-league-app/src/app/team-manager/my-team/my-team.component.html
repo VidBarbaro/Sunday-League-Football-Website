@@ -1,7 +1,7 @@
-<div class="title">
-    <h1 class="mat-display-3 title">My Team</h1>
-</div>
 <div *ngIf="!team" class="main-card">
+    <div class="title">
+        <h1 class="mat-display-3 title">My Team</h1>
+    </div>
     <mat-card>
         <div class="sub-cardl">
             <mat-card-title>
@@ -20,6 +20,9 @@
 </div>
 
 <div *ngIf="team">
+    <div class="title">
+        <h1 class="mat-display-3 title">{{team.name}}</h1>
+    </div>
     <div class="toolbar">
         <form>
             <input name="searchTerm" #searchInput="ngModel" ngModel (ngModelChange)="searchUsers(searchInput.value)" type="search" placeholder="Search users...">
@@ -51,7 +54,7 @@
                     <td>{{appUser?.username}}</td>
                     <td>{{appUser?.email}}</td>
                     <td>
-                        <button (click)="onRemovePlayer(appUser.username)"><mat-icon>delete</mat-icon></button>
+                        <button (click)="onRemovePlayer(appUser.id)"><mat-icon>delete</mat-icon></button>
                     </td>
                 </tr>
             </tbody>

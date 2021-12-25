@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { CustomHttpResponse } from "../model/custom-http-response";
 import { Team } from "../model/team";
 import { TeamPlayer } from "../model/teamPlayer";
 import { User } from "../model/user";
@@ -29,7 +30,11 @@ export class TeamService {
 
     public addPlayerToTeam(teamPlayer: TeamPlayer): Observable<TeamPlayer> {
         return this.http.post<TeamPlayer>(`${this.host}/teamPlayers/addPlayerToTeam`, teamPlayer);
-      } 
+    } 
+
+    public removePlayerFromTeam(playerId: number): Observable<CustomHttpResponse> {
+        return this.http.delete<CustomHttpResponse>(`${this.host}/teamPlayers/removePlayerFromTeam/${playerId}`);
+    } 
 
     public addTeamToLocalCache(team: Team): void {
         localStorage.setItem('team', JSON.stringify(team));

@@ -39,11 +39,15 @@ public class TeamPlayersServiceImplementation implements TeamPlayersService {
     }
 
     @Override
-    public boolean removePlayerFromTeam(Long teamPlayersId) {
-//        if (teamPlayersRepository.findById(teamPlayersId).isPresent()) {
-//            teamPlayersRepository.deleteById(teamPlayersId);
-//            return true;
-//        }
+    public boolean removePlayerFromTeam(Long playerId) {
+        User player = userRepository.findUserById(playerId);
+        TeamPlayers teamPlayers = teamPlayersRepository.findTeamPlayersByPlayerId(player);
+        if (teamPlayers != null) {
+            teamPlayersRepository.deleteById(teamPlayers.getId());
+            player.setActive(false);
+            this.userRepository.save(player);
+            return true;
+        }
         return false;
     }
 

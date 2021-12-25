@@ -83,9 +83,9 @@ export class MyTeamComponent implements OnInit {
     }
   }
 
-  public onRemovePlayer(username: string): void {
+  public onRemovePlayer(playerId: number): void {
     this.subscriptions.push(
-      this.userService.deleteUser(username).subscribe(
+      this.teamService.removePlayerFromTeam(playerId).subscribe(
         (response: CustomHttpResponse) => {
           this.sendNotification(NotificationType.SUCCESS, response.message);
           this.getTeamForManager(this.user.userId); 

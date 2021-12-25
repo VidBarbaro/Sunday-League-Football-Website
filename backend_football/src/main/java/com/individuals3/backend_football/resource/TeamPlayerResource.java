@@ -38,10 +38,10 @@ public class TeamPlayerResource {
         return teamPlayersService.addPlayerToTeam(teamPlayers);
     }
 
-    @DeleteMapping({"removePlayerFromTeam/{teamPlayersId}"})
+    @DeleteMapping({"removePlayerFromTeam/{playerId}"})
     @PreAuthorize("hasAnyAuthority('team:modify')")
-    public ResponseEntity<HttpResponse> removePlayerFromTeam(@PathVariable("teamPlayersId") Long teamPlayersId) throws IOException {
-        teamPlayersService.removePlayerFromTeam(teamPlayersId);
+    public ResponseEntity<HttpResponse> removePlayerFromTeam(@PathVariable("playerId") Long playerId) throws IOException {
+        teamPlayersService.removePlayerFromTeam(playerId);
         return response(OK, PLAYER_REMOVED_FROM_TEAM_SUCCESSFULLY);
     }
 
