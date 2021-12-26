@@ -6,9 +6,10 @@
       <a [hidden]="isAdmin" routerLink="/league-table">Table</a>
       <a [hidden]="isAdmin" routerLink="/fixtures">Fixtures</a>
       <a [hidden]="isAdmin" routerLink="/statistics">Statistics</a>
-      <a [hidden]="isNone" routerLink="/profile">Profile</a>
-      <a [hidden]="!isAdmin" routerLink="/admin">Admin</a>
+      <a [hidden]="!isAdmin" routerLink="/admin/user-managment">User Managment</a>
+      <a [hidden]="!isAdmin" routerLink="/admin/match-managment">Match Managment</a>
       <a [hidden]="!isTeamManager" routerLink="/team-manager/my-team">My Team</a>
+      <a [hidden]="isNone" routerLink="/profile">Profile</a>
       <a [hidden]="!isNone" routerLink="/sign-up">Sign Up</a>
       <a [hidden]="!isNone" routerLink="/login">Log In</a>
       <a [hidden]="isNone" (click)="onLogOut()">Log Out</a>

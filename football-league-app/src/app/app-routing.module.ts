@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { ManagersComponent } from './admin/managers/managers.component';
+import { MatchManagmentComponent } from './admin/match-managment/match-managment.component';
 import { PlayersComponent } from './admin/players/players.component';
 import { ResetUserPasswordComponent } from './admin/reset-user-password/reset-user-password.component';
 import { Role } from './enum/role.enum';
@@ -48,12 +49,16 @@ const routes: Routes = [
     },
     children: [
         {
-          path: '',
+          path: 'user-managment',
           component: AdminComponent
         },
         {
           path: 'reset-user-password',
           component: ResetUserPasswordComponent
+        },
+        {
+          path: 'match-managment',
+          component: MatchManagmentComponent
         }
     ]},
   { path: 'team-manager',

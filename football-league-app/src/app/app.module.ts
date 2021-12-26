@@ -47,6 +47,7 @@ import { TeamManagerComponent } from './team-manager/team-manager.component';
 import { MyTeamComponent } from './team-manager/my-team/my-team.component';
 import { CreateMyTeamComponent } from './team-manager/create-my-team/create-my-team.component';
 import { AddPlayerPopUpComponent } from './pop-ups/add-player-pop-up/add-player-pop-up.component';
+import { MatchManagmentComponent } from './admin/match-managment/match-managment.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { AddPlayerPopUpComponent } from './pop-ups/add-player-pop-up/add-player-
     TeamManagerComponent,
     MyTeamComponent,
     CreateMyTeamComponent,
-    AddPlayerPopUpComponent
+    AddPlayerPopUpComponent,
+    MatchManagmentComponent
   ],
   imports: [
     BrowserModule,
