@@ -21,6 +21,10 @@ export class UserService {
     return this.http.get<User[]>(`${this.host}/user/availablePlayers`);
   }
 
+  public getReferees(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.host}/user/availableReferees`);
+}
+
   public getUserByUsername(username: string): Observable<User> {
     return this.http.get<User>(`${this.host}/user/find/${username}`);
   }
@@ -49,6 +53,10 @@ export class UserService {
 
   public addUsersToLocalCache(users: User[]): void {
     localStorage.setItem('users', JSON.stringify(users));
+  }
+
+  public addRefereesToLocalCache(referees: User[]): void {
+    localStorage.setItem('referees', JSON.stringify(referees));
   }
 
   public getUsersFromLocalCache(): User[] {

@@ -1,6 +1,7 @@
 package com.individuals3.backend_football.resource;
 
 import com.individuals3.backend_football.domain.HttpResponse;
+import com.individuals3.backend_football.domain.Match;
 import com.individuals3.backend_football.domain.Team;
 import com.individuals3.backend_football.domain.User;
 import com.individuals3.backend_football.exception.domain.*;
@@ -33,6 +34,12 @@ public class TeamResource extends ExceptionHandling {
     public TeamResource(TeamService teamService, TeamRepository teamRepository) {
         this.teamService = teamService;
         this.teamRepository = teamRepository;
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<Team>> getAllTeams() {
+        List<Team> teams = teamService.getTeams();
+        return new ResponseEntity<>(teams, OK);
     }
 
     @GetMapping("/name/{teamName}")

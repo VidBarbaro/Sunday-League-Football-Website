@@ -1,6 +1,7 @@
 package com.individuals3.backend_football.repository;
 
 import com.individuals3.backend_football.domain.User;
+import com.individuals3.backend_football.enumeration.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findUserByUserId(String id);
 
     List<User> findUsersByIsActive(Boolean isActive);
+
+    List<User> findUsersByRole(String role);
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.individuals3.backend_football.constant.MatchImplementationConstant.*;
 
@@ -32,6 +33,11 @@ public class MatchServiceImplementation implements MatchService {
         validateNewMatch(match);
         matchRepository.save(match);
         return match;
+    }
+
+    @Override
+    public List<Match> getMatches() {
+        return matchRepository.findAll();
     }
 
     private Match validateNewMatch(Match match) throws TeamAlreadyHasMatchThatDateException, DateForNewMatchHasAlreadyPassedException {

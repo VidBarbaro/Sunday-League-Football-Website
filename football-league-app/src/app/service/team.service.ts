@@ -15,8 +15,16 @@ export class TeamService {
 
     constructor(private http: HttpClient) { }
 
+    public getTeams(): Observable<Team[]> {
+        return this.http.get<Team[]>(`${this.host}/team/list`);
+    }
+
     public getTeamByManagerId(teamManagerId: string): Observable<Team> {
         return this.http.get<Team>(`${this.host}/team/managerId/${teamManagerId}`);
+    }
+
+    public getTeamByTeamName(teamName: string): Observable<Team> {
+        return this.http.get<Team>(`${this.host}/team/name/${teamName}`);
     }
 
     public getPlayersByTeamId(teamId: number): Observable<User[]> {
@@ -38,6 +46,11 @@ export class TeamService {
 
     public addTeamToLocalCache(team: Team): void {
         localStorage.setItem('team', JSON.stringify(team));
+    }
+
+    
+    public addTeamsToLocalCache(teams: Team[]): void {
+        localStorage.setItem('teams', JSON.stringify(teams));
     }
 
     public getTeamFromLocalCache(): Team {

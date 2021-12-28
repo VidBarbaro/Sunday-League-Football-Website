@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-material-components/datetime-picker": "^7.0.1",
     "@angular/animations": "~12.2.0",
     "@angular/cdk": "^12.2.6",
     "@angular/common": "~12.2.0",
@@ -27,7 +28,10 @@
     "angular-notifier": "^9.1.0",
     "chart.js": "^3.5.1",
     "echarts": "^5.2.1",
+    "material-time-control": "github:SteveDunlap13/MaterialTimeControl",
+    "ng-pick-datetime": "^7.0.0",
     "ngx-echarts": "^7.0.2",
+    "primeng": "^11.4.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

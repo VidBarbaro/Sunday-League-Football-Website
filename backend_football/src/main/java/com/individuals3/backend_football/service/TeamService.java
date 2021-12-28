@@ -21,4 +21,6 @@ public interface TeamService {
 
     void deleteTeam(String teamName) throws IOException;
 
+    List<Team> getTeams();
+
 }

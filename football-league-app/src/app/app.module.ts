@@ -48,6 +48,8 @@ import { MyTeamComponent } from './team-manager/my-team/my-team.component';
 import { CreateMyTeamComponent } from './team-manager/create-my-team/create-my-team.component';
 import { AddPlayerPopUpComponent } from './pop-ups/add-player-pop-up/add-player-pop-up.component';
 import { MatchManagmentComponent } from './admin/match-managment/match-managment.component';
+import { NewMatchPopUpComponent } from './pop-ups/new-match-pop-up/new-match-pop-up.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { MatchManagmentComponent } from './admin/match-managment/match-managment
     MyTeamComponent,
     CreateMyTeamComponent,
     AddPlayerPopUpComponent,
-    MatchManagmentComponent
+    MatchManagmentComponent,
+    NewMatchPopUpComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +98,9 @@ import { MatchManagmentComponent } from './admin/match-managment/match-managment
     RouterModule,
     NgxEchartsModule.forRoot({ echarts: () => import('echarts'),}),
     NotificationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
   ],
   providers: [NotificationService, AuthenticationGuard, AuthenticationService, UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

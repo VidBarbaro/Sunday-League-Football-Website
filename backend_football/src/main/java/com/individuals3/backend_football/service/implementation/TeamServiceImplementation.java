@@ -96,6 +96,11 @@ public class TeamServiceImplementation implements TeamService {
         teamRepository.deleteById(team.getId());
     }
 
+    @Override
+    public List<Team> getTeams() {
+        return teamRepository.findAll();
+    }
+
     private String generateTeamId() {
         return RandomStringUtils.randomNumeric(10);
     }

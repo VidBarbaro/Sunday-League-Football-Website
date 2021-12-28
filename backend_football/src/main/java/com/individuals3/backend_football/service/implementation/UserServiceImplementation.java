@@ -191,6 +191,11 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
     }
 
     @Override
+    public List<User> getAvailableReferees() {
+        return userRepository.findUsersByRole(Role.ROLE_REFEREE.toString());
+    }
+
+    @Override
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }

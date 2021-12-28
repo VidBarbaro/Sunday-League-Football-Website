@@ -30,6 +30,15 @@ public class Match {
     @Column(name = "location")
     private String location;
 
+    @Column(name = "isFinished")
+    private boolean isFinished;
+
+    @Column(name = "homeTeamGoals")
+    private int homeTeamGoals;
+
+    @Column(name = "awayTeamGoals")
+    private int awayTeamGoals;
+
     public Match(Team homeTeamId, Team awayTeamId, User refereeId, LocalDateTime matchDateTime, String location) {
         this.homeTeamId = homeTeamId;
         this.awayTeamId = awayTeamId;
@@ -87,5 +96,29 @@ public class Match {
 
     public void setRefereeId(User refereeId) {
         this.refereeId = refereeId;
+    }
+
+    public Boolean getIsFinished() {
+        return isFinished;
+    }
+
+    public void setIsFinished(boolean isFinished) {
+        this.isFinished = isFinished;
+    }
+
+    public int getHomeTeamGoals() {
+        return homeTeamGoals;
+    }
+
+    public void setHomeTeamGoals(int homeTeamGoals) {
+        this.homeTeamGoals = homeTeamGoals;
+    }
+
+    public int getAwayTeamGoals() {
+        return awayTeamGoals;
+    }
+
+    public void setAwayTeamGoals(int awayTeamGoals) {
+        this.awayTeamGoals = awayTeamGoals;
     }
 }

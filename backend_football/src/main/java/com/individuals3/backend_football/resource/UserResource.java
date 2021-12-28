@@ -108,6 +108,12 @@ public class UserResource extends ExceptionHandling {
         return new ResponseEntity<>(players, OK);
     }
 
+    @GetMapping("/availableReferees")
+    public ResponseEntity<List<User>> getAvailableReferees() {
+        List<User> players = userService.getAvailableReferees();
+        return new ResponseEntity<>(players, OK);
+    }
+
     @GetMapping("/resetPassword/{email}")
     public ResponseEntity<HttpResponse> resetPassword(@PathVariable("email") String email) throws MessagingException, EmailNotFoundException {
         userService.resetPassword(email);

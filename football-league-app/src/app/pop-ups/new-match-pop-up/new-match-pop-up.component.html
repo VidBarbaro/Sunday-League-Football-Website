@@ -1,0 +1,37 @@
+<div class="main">
+    <div class="content firstTab">
+        <h1>Create Match</h1>
+    </div>
+    <form #newMatchForm="ngForm" (ngSubmit)="saveNewMatch(newMatchForm)">
+    <div class="content">
+            <label for="homeTeamId">Home Team: </label>
+            <select name="homeTeamId" required ngModel>
+                <option *ngFor="let team of teams" value="{{team.name}}">{{team.name}}</option>
+            </select>
+            <br>
+            <label for="awayTeamId">Away Team: </label>
+            <select name="awayTeamId" required ngModel>
+                <option *ngFor="let team of teams" value="{{team.name}}">{{team.name}}</option>
+            </select>
+            <br>
+            <label for="refereeId">Referee: </label>
+            <select name="refereeId" required ngModel>
+                <option *ngFor="let referee of referees" value="{{referee.username}}">{{referee.username}}</option>
+            </select>
+            <br>
+            <label for="matchDateTime">Date and Time: </label>
+            <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1"
+            placeholder="Date Time">
+            <owl-date-time #dt1></owl-date-time>
+            <br>
+            <label for="location">Location: </label>
+            <input type="text" name="location" required ngModel>
+            <br>
+    </div>
+    <div class="content">
+        <button type="submit" [disabled]="newMatchForm.invalid">
+            Create User
+        </button>
+    </div>
+    </form>
+</div>

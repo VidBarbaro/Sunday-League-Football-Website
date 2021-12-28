@@ -1,1 +1,41 @@
-<p>match-managment works!</p>
+<div class="toolbar">
+    <form>
+        <input name="searchTerm" #searchInput="ngModel" ngModel type="search" placeholder="Search users...">
+     </form>
+      <button type="button" class="newUser" (click)="openCreateMatch()">
+        + New Match
+      </button>
+      <button type="button" (click)="refreshPage()" class="refresh"><mat-icon>refresh</mat-icon></button>
+</div>
+
+<div class="table">
+    <table>
+        <thead>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>Referee</th>
+            <th>Date Time</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </thead>
+        <tbody *ngFor="let match of matches">
+            <tr>
+                <td>{{match?.homeTeamId.name}}</td>
+                <td>{{match?.awayTeamId.name}}</td>
+                <td>{{match?.refereeId.username}}</td>
+                <td>{{match?.matchDateTime}}</td>
+                <td>{{match?.location}}</td>
+                <td>
+                    <span *ngIf="match?.isFinished">Finished</span>
+                    <span *ngIf="!match?.isFinished">Not Played</span>
+                </td>
+                
+                <td>
+                    <button id="openUserInfo"><mat-icon>edit</mat-icon></button>
+                    <button><mat-icon>delete</mat-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
