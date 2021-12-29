@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type-enum';
+import { CustomHttpResponse } from 'src/app/model/custom-http-response';
 import { Match } from 'src/app/model/match';
 import { NewMatchPopUpComponent } from 'src/app/pop-ups/new-match-pop-up/new-match-pop-up.component';
 import { MatchService } from 'src/app/service/match.service';
@@ -72,6 +73,20 @@ export class MatchManagmentComponent implements OnInit, OnDestroy {
         (errorResponse: HttpErrorResponse) => {
           this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
           this.refreshing = false;
+        }
+      )
+    );
+  }
+
+  public onDeleteMatch(matchId: number): void {
+    this.subscriptions.push(
+      this.matchService.deleteMatch(matchId).subscribe(
+        (response: CustomHttpResponse) => {
+          this.sendNotification(NotificationType.SUCCESS, response.message);
+          this.getMatches(); 
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
         }
       )
     );

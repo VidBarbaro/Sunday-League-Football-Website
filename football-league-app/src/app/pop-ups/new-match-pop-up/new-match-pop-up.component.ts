@@ -20,9 +20,16 @@ export class NewMatchPopUpComponent implements OnInit {
   public match: Match;
   public teams: Team[];
   public referees: User[];
-  example = {
-    value: new Date(2022, 11, 28, 14, 57)}
+  public homeTeam: Team;
+  public awayTeam: Team;
+  public referee: User;
   private subscriptions: Subscription[] = [];
+
+  public homeTeamName: string;
+  public awayTeamName: string;
+  public refereeUsername: string;
+  public matchDate: Date;
+  public location: string;
 
   constructor(private matchService: MatchService, private notificationService: NotificationService, private userService: UserService, private teamService: TeamService) {
   }
@@ -33,19 +40,59 @@ export class NewMatchPopUpComponent implements OnInit {
   }
 
   public saveNewMatch(matchForm: NgForm): void {
+    console.log(matchForm.value);
+
     const formData = this.matchService.createMatchFormData(matchForm.value);
-    console.log(this.match.matchDateTime);
     
     this.matchService.createNewMatch(formData).subscribe(
       (response: Match) => {
         matchForm.reset();
-        this.sendNotification(NotificationType.SUCCESS, `Match: ${response.homeTeamId.name} vs ${response.awayTeamId.name} added succesfully`);
+        this.sendNotification(NotificationType.SUCCESS, `Match: ${response.homeTeamId} vs ${response.awayTeamId} added succesfully`);
       },
       (errorResponse: HttpErrorResponse) => {
         this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
       }
     )
   }
+
+  // public saveNewMatch(match: Match): void {
+  //   this.matchService.createNewMatch(match).subscribe(
+  //     (response: Match) => {
+        
+  //       this.sendNotification(NotificationType.SUCCESS, `Match: ${response.homeTeamId} vs ${response.awayTeamId} added succesfully`);
+  //     },
+  //     (errorResponse: HttpErrorResponse) => {
+  //       this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+  //     }
+  //   )
+  // }
+
+  // public createNewMatch() {
+  //   if(this.homeTeamName != null || this.awayTeamName != null || this.refereeUsername != null || this.matchDate != null || this.location != null) {
+  //     this.subscriptions.push(
+  //       this.userService.getUserByUsername(this.refereeUsername).subscribe(
+  //         (response: User) => {
+  //           this.referee = response;
+  //         }
+  //       ),
+  //       this.teamService.getTeamByTeamName(this.homeTeamName).subscribe(
+  //         (response: Team) => {
+  //           this.homeTeam = response;
+  //         }
+  //       ),
+  //       this.teamService.getTeamByTeamName(this.awayTeamName).subscribe(
+  //         (response: Team) => {
+  //           this.awayTeam = response;
+  //         }
+  //       ),
+  //     );
+  //     console.log("Home team" + this.homeTeam);
+  //     var datestr = (new Date(this.matchDate)).toISOString();
+  //     this.match = new Match(this.homeTeam, this.awayTeam, this.referee, datestr, this.location);
+  //     this.saveNewMatch(this.match);
+  //   }
+  //   this.sendNotification(NotificationType.ERROR, "Fill in all the fields");
+  // }
 
   public getAvailableReferees(): void {
     this.subscriptions.push(

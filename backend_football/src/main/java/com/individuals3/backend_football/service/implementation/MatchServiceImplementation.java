@@ -1,19 +1,26 @@
 package com.individuals3.backend_football.service.implementation;
 
 import com.individuals3.backend_football.domain.Match;
+import com.individuals3.backend_football.domain.User;
 import com.individuals3.backend_football.exception.match.DateForNewMatchHasAlreadyPassedException;
 import com.individuals3.backend_football.exception.match.TeamAlreadyHasMatchThatDateException;
 import com.individuals3.backend_football.repository.MatchRepository;
 import com.individuals3.backend_football.repository.TeamRepository;
 import com.individuals3.backend_football.repository.UserRepository;
 import com.individuals3.backend_football.service.MatchService;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.individuals3.backend_football.constant.FileConstant.USER_FOLDER;
 import static com.individuals3.backend_football.constant.MatchImplementationConstant.*;
 
 @Service
@@ -38,6 +45,12 @@ public class MatchServiceImplementation implements MatchService {
     @Override
     public List<Match> getMatches() {
         return matchRepository.findAll();
+    }
+
+    @Override
+    public void deleteMatch(Long matchId) throws IOException {
+        Match match = matchRepository.findMatchById(matchId);
+        matchRepository.deleteById(match.getId());
     }
 
     private Match validateNewMatch(Match match) throws TeamAlreadyHasMatchThatDateException, DateForNewMatchHasAlreadyPassedException {

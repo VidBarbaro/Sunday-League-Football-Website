@@ -33,7 +33,7 @@
                 
                 <td>
                     <button id="openUserInfo"><mat-icon>edit</mat-icon></button>
-                    <button><mat-icon>delete</mat-icon></button>
+                    <button (click)="onDeleteMatch(match?.id)"><mat-icon>delete</mat-icon></button>
                 </td>
             </tr>
         </tbody>

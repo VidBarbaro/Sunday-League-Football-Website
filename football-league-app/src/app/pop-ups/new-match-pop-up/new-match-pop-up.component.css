@@ -1,20 +1,22 @@
 label{
     display: inline-block;
-    float: left;
     clear: left;
     width: 30%;
     text-align: left;
 }
 
-input {
+.text {
   display: inline-block;
-  float: left;
 }
 
-div {
+.content {
     margin: 5%;
     display: flex;
     flex-direction: column;
+}
+
+.datepicker {
+    display: inline;
 }
 
 /* button {

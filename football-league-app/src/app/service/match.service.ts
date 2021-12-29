@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CustomHttpResponse } from '../model/custom-http-response';
 import { Match } from '../model/match';
 import { NgForm } from '@angular/forms';
+import { MatchDTO } from '../model/matchDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -26,13 +27,17 @@ export class MatchService {
     localStorage.setItem('matches', JSON.stringify(matches));
   }
 
-  public createMatchFormData(match: Match): FormData {
+  public deleteMatch(matchId: number): Observable<CustomHttpResponse> {
+    return this.http.delete<CustomHttpResponse>(`${this.host}/match/delete/${matchId}`);
+  }
+
+  public createMatchFormData(match: MatchDTO): FormData {
     const formData = new FormData();
-    var datestr = (new Date(match.matchDateTime)).toUTCString();
-    alert(match.matchDateTime);
-    formData.append('homeTeamId', match.homeTeamId.name);
-    formData.append('awayTeamId', match.awayTeamId.name);
-    formData.append('refereeId', match.refereeId.username);
+    var datestr = (new Date(match.matchDateTime)).toISOString();
+    alert(match.homeTeamId);
+    formData.append('homeTeamId', match.homeTeamId);
+    formData.append('awayTeamId', match.awayTeamId);
+    formData.append('refereeId', match.refereeId);
     formData.append('matchDateTime', datestr);
     formData.append('location', match.location);
     return formData;

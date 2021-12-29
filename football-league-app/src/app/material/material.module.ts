@@ -15,6 +15,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -34,6 +36,8 @@ const MaterialComponents = [
   MatMenuModule,
   MatDialogModule,
   MatProgressBarModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ]
 
 @NgModule({
