@@ -1,6 +1,6 @@
 <div class="toolbar">
     <form>
-        <input name="searchTerm" #searchInput="ngModel" ngModel type="search" placeholder="Search users...">
+        <input name="searchTerm" #searchInput="ngModel" ngModel (ngModelChange)="searchMatches(searchInput.value)" type="search" placeholder="Search users...">
      </form>
       <button type="button" class="newUser" (click)="openCreateMatch()">
         + New Match
@@ -32,7 +32,7 @@
                 </td>
                 
                 <td>
-                    <button id="openUserInfo"><mat-icon>edit</mat-icon></button>
+                    <button (click)="openEditMatch(match)" id="openUserInfo"><mat-icon>edit</mat-icon></button>
                     <button (click)="onDeleteMatch(match?.id)"><mat-icon>delete</mat-icon></button>
                 </td>
             </tr>

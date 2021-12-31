@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type-enum';
 import { CustomHttpResponse } from 'src/app/model/custom-http-response';
 import { Match } from 'src/app/model/match';
+import { EditMatchPopUpComponent } from 'src/app/pop-ups/edit-match-pop-up/edit-match-pop-up.component';
 import { NewMatchPopUpComponent } from 'src/app/pop-ups/new-match-pop-up/new-match-pop-up.component';
 import { MatchService } from 'src/app/service/match.service';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -92,9 +93,35 @@ export class MatchManagmentComponent implements OnInit, OnDestroy {
     );
   }
 
+  public searchMatches(searchTerm: string): void {
+    const results: Match[] = [];
+    for (const match of this.matchService.getMatchesFromLocalCache()) {
+      if (match.homeTeamId.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+          match.awayTeamId.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+          match.refereeId.username.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+          match.location.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+            results.push(match);
+      }
+    }
+    this.matches = results;
+    if (results.length == 0 || !searchTerm) {
+      this.matches = this.matchService.getMatchesFromLocalCache();
+    }
+  }
+
   public openCreateMatch() {
     this.dialogRef.open(NewMatchPopUpComponent,{
       width: '30%'
+    });
+  }
+
+  public openEditMatch(match: Match) {
+    this.dialogRef.open(EditMatchPopUpComponent,{
+      //data
+      width: '30%',
+      data: {
+        editMatch: match
+      }
     });
   }
 

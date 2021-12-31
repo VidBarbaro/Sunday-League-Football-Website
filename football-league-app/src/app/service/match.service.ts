@@ -27,8 +27,19 @@ export class MatchService {
     localStorage.setItem('matches', JSON.stringify(matches));
   }
 
+  public getMatchesFromLocalCache(): Match[] {
+    if(localStorage.getItem('matches')) {
+      return JSON.parse(localStorage.getItem('matches'));
+    }
+    return null;
+  }
+
   public deleteMatch(matchId: number): Observable<CustomHttpResponse> {
     return this.http.delete<CustomHttpResponse>(`${this.host}/match/delete/${matchId}`);
+  }
+
+  public updateMatch(formData: FormData): Observable<MatchDTO> {
+    return this.http.post<MatchDTO>(`${this.host}/match/update`, formData);
   }
 
   public createMatchFormData(match: MatchDTO): FormData {
@@ -40,6 +51,22 @@ export class MatchService {
     formData.append('refereeId', match.refereeId);
     formData.append('matchDateTime', datestr);
     formData.append('location', match.location);
+    return formData;
+  }
+
+  public createFinishedMatchFormData(match: MatchDTO): FormData {
+    const formData = new FormData();
+    var datestr = (new Date(match.matchDateTime)).toISOString();
+    alert(match.homeTeamId);
+    formData.append('matchId', match.id.toString());
+    formData.append('homeTeamId', match.homeTeamId);
+    formData.append('awayTeamId', match.awayTeamId);
+    formData.append('refereeId', match.refereeId);
+    formData.append('matchDateTime', datestr);
+    formData.append('location', match.location);
+    formData.append('homeTeamGoals', match.homeTeamGoals);
+    formData.append('awayTeamGoals', match.awayTeamGoals);
+    formData.append('isFinished', match.isFinished);
     return formData;
   }
 }

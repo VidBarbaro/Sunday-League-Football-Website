@@ -32,6 +32,9 @@ export class AuthenticationService {
     localStorage.removeItem('users');
     localStorage.removeItem('team');
     localStorage.removeItem('players');
+    localStorage.removeItem('matches');
+    localStorage.removeItem('teams');
+    localStorage.removeItem('referees')
   }
 
   public saveToken(token: string): void {

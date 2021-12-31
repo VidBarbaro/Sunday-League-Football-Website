@@ -1,0 +1,49 @@
+<div class="main">
+    <div class="content firstTab">
+        <h1>Edit Match</h1>
+    </div>
+    <form #editMatchForm="ngForm">
+    <div class="content">
+            <label for="homeTeamId">Home Team: </label>
+            <select name="homeTeamId" required [(ngModel)]="homeTeam">
+                <option *ngFor="let team of teams" value="{{team.name}}">{{team.name}}</option>
+            </select>
+            <br>
+            <label for="awayTeamId">Away Team: </label>
+            <select name="awayTeamId" required [(ngModel)]="awayTeam">
+                <option *ngFor="let team of teams" value="{{team.name}}">{{team.name}}</option>
+            </select>
+            <br>
+            <label for="refereeId">Referee: </label>
+            <select name="refereeId" required [(ngModel)]="referee">
+                <option *ngFor="let referee of referees" value="{{referee.username}}">{{referee.username}}</option>
+            </select>
+            <br>
+            <label for="matchDateTime">Date: </label>
+            <div class="datepicker">
+                <input matInput [matDatepicker]="myDatePicker" [(ngModel)]="matchDate" name="matchDateTime" required>
+                <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #myDatePicker></mat-datepicker>
+            </div>
+            <br>
+            <label for="location">Location: </label>
+            <input class="text" type="text" name="location" required [(ngModel)]="location">
+            <br>
+            <label for="homeTeamGoals">Home Team Goals: </label>
+            <input class="text" type="text" name="homeTeamGoals" required [(ngModel)]="homeTeamGoals" [disabled]="!isFinished">
+            <br>
+            <label for="awayTeamGoals">Away Team Goals: </label>
+            <input class="text" type="text" name="awayTeamGoals" required [(ngModel)]="awayTeamGoals" [disabled]="!isFinished">
+            <br>
+            <label>
+                <input type="checkbox" name="active" [(ngModel)]="isFinished">
+                Is Finished
+            </label>
+    </div>
+    <div class="content">
+        <button type="submit" (click)="onUpdateMatch()" [disabled]="editMatchForm.invalid">
+            Update Match
+        </button>
+    </div>
+    </form>
+</div>

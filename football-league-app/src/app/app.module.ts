@@ -50,6 +50,7 @@ import { AddPlayerPopUpComponent } from './pop-ups/add-player-pop-up/add-player-
 import { MatchManagmentComponent } from './admin/match-managment/match-managment.component';
 import { NewMatchPopUpComponent } from './pop-ups/new-match-pop-up/new-match-pop-up.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { EditMatchPopUpComponent } from './pop-ups/edit-match-pop-up/edit-match-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     CreateMyTeamComponent,
     AddPlayerPopUpComponent,
     MatchManagmentComponent,
-    NewMatchPopUpComponent
+    NewMatchPopUpComponent,
+    EditMatchPopUpComponent
   ],
   imports: [
     BrowserModule,

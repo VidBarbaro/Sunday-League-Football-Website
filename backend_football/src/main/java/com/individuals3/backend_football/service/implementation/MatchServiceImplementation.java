@@ -1,7 +1,12 @@
 package com.individuals3.backend_football.service.implementation;
 
 import com.individuals3.backend_football.domain.Match;
+import com.individuals3.backend_football.domain.Team;
 import com.individuals3.backend_football.domain.User;
+import com.individuals3.backend_football.exception.domain.EmailExistsException;
+import com.individuals3.backend_football.exception.domain.NotAnImageFileException;
+import com.individuals3.backend_football.exception.domain.UserNotFoundException;
+import com.individuals3.backend_football.exception.domain.UsernameExistsException;
 import com.individuals3.backend_football.exception.match.DateForNewMatchHasAlreadyPassedException;
 import com.individuals3.backend_football.exception.match.TeamAlreadyHasMatchThatDateException;
 import com.individuals3.backend_football.repository.MatchRepository;
@@ -11,6 +16,7 @@ import com.individuals3.backend_football.service.MatchService;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +44,21 @@ public class MatchServiceImplementation implements MatchService {
     @Override
     public Match createNewMatch(Match match) throws TeamAlreadyHasMatchThatDateException, DateForNewMatchHasAlreadyPassedException {
         validateNewMatch(match);
+        matchRepository.save(match);
+        return match;
+    }
+
+    @Override
+    public Match updateMatch(Long matchId, Team homeTeam, Team awayTeam, User referee, LocalDateTime matchDateTime, String location, int homeTeamGoals, int awayTeamGoals, Boolean isFinished) {
+        Match match = this.matchRepository.findMatchById(matchId);
+        match.setHomeTeamId(homeTeam);
+        match.setAwayTeamId(awayTeam);
+        match.setRefereeId(referee);
+        match.setMatchDateTime(matchDateTime);
+        match.setLocation(location);
+        match.setHomeTeamGoals(homeTeamGoals);
+        match.setAwayTeamGoals(awayTeamGoals);
+        match.setIsFinished(isFinished);
         matchRepository.save(match);
         return match;
     }

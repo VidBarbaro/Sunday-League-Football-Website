@@ -1,0 +1,25 @@
+label{
+    display: inline-block;
+    clear: left;
+    width: 30%;
+    text-align: left;
+}
+
+.text {
+  display: inline-block;
+}
+
+.content {
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.datepicker {
+    display: inline;
+}
+
+/* button {
+    background-color: blueviolet;
+    color: white;
+} */
