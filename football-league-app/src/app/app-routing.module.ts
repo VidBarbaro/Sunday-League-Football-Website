@@ -14,6 +14,8 @@ import { LeagueTableComponent } from './league-table/league-table.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { ChangeDetailsComponent } from './profile/change-details/change-details.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FinishedMatchesComponent } from './referee/finished-matches/finished-matches.component';
+import { MyMatchesComponent } from './referee/my-matches/my-matches.component';
 import { ResultsComponent } from './results/results.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { StatisticsComponent } from './statistics/statistics.component';
@@ -74,6 +76,22 @@ const routes: Routes = [
     {
       path: 'my-team/create-my-team',
       component: CreateMyTeamComponent
+    }
+  ]
+  },
+  { path: 'referee',
+  canActivate: [AuthenticationGuard],
+  data: {
+    role: Role.REFEREE
+  },
+  children: [
+    {
+      path: 'my-matches',
+      component: MyMatchesComponent
+    },
+    {
+      path: 'finished-matches',
+      component: FinishedMatchesComponent
     }
   ]
   },

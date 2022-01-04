@@ -1,5 +1,6 @@
 package com.individuals3.backend_football.service.implementation;
 
+import com.individuals3.backend_football.constant.FileConstant;
 import com.individuals3.backend_football.domain.Team;
 import com.individuals3.backend_football.domain.User;
 import com.individuals3.backend_football.domain.UserPrincipal;
@@ -82,6 +83,7 @@ public class TeamServiceImplementation implements TeamService {
         team.setTeamId(generateTeamId());
         team.setName(teamName);
 //        team.setClubLogoUrl(getTe);
+        team.setClubLogoUrl(getTemporaryLogoImageUrl(teamName));
         teamRepository.save(team);
         saveProfileImage(team, profileImage);
         team.setTeamManagerId(teamManagerId);
@@ -126,6 +128,10 @@ public class TeamServiceImplementation implements TeamService {
     private String setProfileImageUrl(String teamName) {
         return ServletUriComponentsBuilder.fromCurrentContextPath().path(TEAM_IMAGE_PATH + teamName + FORWARD_SLASH
                 + teamName + DOT + JPG_EXTENSION).toUriString();
+    }
+
+    private String getTemporaryLogoImageUrl(String teamName) {
+        return ServletUriComponentsBuilder.fromCurrentContextPath().path(FileConstant.DEFAULT_TEAM_IMAGE_PATH + teamName).toUriString();
     }
 
     private Team validateNewTeam(String teamName, String managerId) throws TeamNotFoundException, TeamNameExistsException, ManagerAlreadyHasTeamException {

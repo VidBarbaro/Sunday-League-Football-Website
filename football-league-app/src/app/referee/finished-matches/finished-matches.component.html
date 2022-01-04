@@ -1,0 +1,24 @@
+<div class="title">
+    <h1 class="mat-display-3 title">Finished Matches</h1>
+</div>
+<div *ngFor="let match of matches">
+    <mat-card *ngIf="match.isFinished">
+        <div>
+            <img height="100" width="100" src="{{match.homeTeamId.clubLogoUrl}}">
+            <mat-card-content>{{match.homeTeamId.name}}</mat-card-content>
+        </div>
+        <div class="score"
+        [ngClass]="{winner: match.homeTeamGoals > match.awayTeamGoals,
+                    loser: match.homeTeamGoals < match.awayTeamGoals,
+                    tie: match.homeTeamGoals == match.awayTeamGoals}">{{match.homeTeamGoals}}</div>
+        <div><h1>:</h1></div>
+        <div class="score"
+        [ngClass]="{winner: match.homeTeamGoals < match.awayTeamGoals,
+            loser: match.homeTeamGoals > match.awayTeamGoals,
+            tie: match.homeTeamGoals == match.awayTeamGoals}">{{match.awayTeamGoals}}</div>
+        <div>
+            <img height="100" width="100" src="{{match.awayTeamId.clubLogoUrl}}">
+            <mat-card-content>{{match.awayTeamId.name}}</mat-card-content>
+        </div>
+    </mat-card>
+</div>

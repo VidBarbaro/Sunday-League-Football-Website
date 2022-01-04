@@ -12,11 +12,12 @@ export class Match {
     public awayTeamGoals: number;
     public isFinished: boolean;
 
-    constructor(homeTeamId: Team, awayTeamId: Team, refereeId: User, matchDateTime: Date, location: string) {
+    constructor(homeTeamId: Team, awayTeamId: Team, refereeId: User, matchDateTime: Date, location: string, isFinished: boolean) {
         this.homeTeamId = homeTeamId;
         this.awayTeamId = awayTeamId;
         this.refereeId = refereeId;
         this.matchDateTime = matchDateTime;
         this.location = location;
+        this.isFinished = isFinished;
     }
 }

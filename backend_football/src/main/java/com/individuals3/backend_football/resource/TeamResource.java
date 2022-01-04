@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
+import static com.individuals3.backend_football.constant.FileConstant.*;
 import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 
 @RestController
 @RequestMapping(value = "/team")
@@ -78,6 +82,11 @@ public class TeamResource extends ExceptionHandling {
         Team team = teamRepository.findTeamByName(teamName);
 //        teamService.addPlayerToTeam(player, team);
         return response(OK, PLAYER_ADDED_SUCCESSFULLY_TO_TEAM);
+    }
+
+    @GetMapping(path = "/image/{teamName}/{fileName}", produces = IMAGE_JPEG_VALUE)
+    public byte[] getClubLogo(@PathVariable("teamName") String teamName, @PathVariable("fileName") String fileName) throws IOException {
+        return Files.readAllBytes(Paths.get(TEAM_FOLDER + teamName + FORWARD_SLASH + fileName));
     }
 
 

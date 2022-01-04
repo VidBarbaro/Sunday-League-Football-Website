@@ -1,0 +1,25 @@
+<div class="title">
+    <h1 class="mat-display-3 title">Upcoming Matches</h1>
+</div>
+<div *ngFor="let match of matches">
+    <mat-card *ngIf="!match.isFinished">
+        <div>
+            {{match.matchDateTime}}
+        </div>
+        <div>
+            <img height="100" width="100" src="{{match.homeTeamId.clubLogoUrl}}" alt="">
+            <mat-card-content>{{match.homeTeamId.name}}</mat-card-content>
+        </div>
+        <div>
+            <h1 class="">VS</h1>
+            <button mat-raised-button (click)="openInputMatchResult(match)">Input Match Result</button>
+        </div>
+        <div>
+            <img height="100" width="100" src="{{match.awayTeamId.clubLogoUrl}}" alt="">
+            <mat-card-content>{{match.awayTeamId.name}}</mat-card-content>
+        </div>
+        <div class="location">
+            {{match.location}}
+        </div>
+    </mat-card>
+</div>

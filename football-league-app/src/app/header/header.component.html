@@ -2,13 +2,15 @@
   <div><a routerLink="/home"><img src="../assets/images/logo.png" alt="Logo" class="logo"></a></div>
   <div class="routes">
       <a routerLink="/home">Home</a>
-      <a [hidden]="isAdmin" routerLink="/results">Results</a>
-      <a [hidden]="isAdmin" routerLink="/league-table">Table</a>
-      <a [hidden]="isAdmin" routerLink="/fixtures">Fixtures</a>
-      <a [hidden]="isAdmin" routerLink="/statistics">Statistics</a>
+      <a [hidden]="isAdmin" [hidden]="isReferee" routerLink="/results">Results</a>
+      <a [hidden]="isAdmin" [hidden]="isReferee" routerLink="/league-table">Table</a>
+      <a [hidden]="isAdmin" [hidden]="isReferee" routerLink="/fixtures">Fixtures</a>
+      <a [hidden]="isAdmin" [hidden]="isReferee" routerLink="/statistics">Statistics</a>
       <a [hidden]="!isAdmin" routerLink="/admin/user-managment">User Managment</a>
       <a [hidden]="!isAdmin" routerLink="/admin/match-managment">Match Managment</a>
       <a [hidden]="!isTeamManager" routerLink="/team-manager/my-team">My Team</a>
+      <a [hidden]="!isReferee" routerLink="/referee/my-matches">My Matches</a>
+      <a [hidden]="!isReferee" routerLink="/referee/finished-matches">My Finished Matches</a>
       <a [hidden]="isNone" routerLink="/profile">Profile</a>
       <a [hidden]="!isNone" routerLink="/sign-up">Sign Up</a>
       <a [hidden]="!isNone" routerLink="/login">Log In</a>

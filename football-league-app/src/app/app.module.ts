@@ -51,6 +51,9 @@ import { MatchManagmentComponent } from './admin/match-managment/match-managment
 import { NewMatchPopUpComponent } from './pop-ups/new-match-pop-up/new-match-pop-up.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { EditMatchPopUpComponent } from './pop-ups/edit-match-pop-up/edit-match-pop-up.component';
+import { MyMatchesComponent } from './referee/my-matches/my-matches.component';
+import { FinishedMatchesComponent } from './referee/finished-matches/finished-matches.component';
+import { InputMatchResultPopUpComponent } from './pop-ups/input-match-result-pop-up/input-match-result-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,10 @@ import { EditMatchPopUpComponent } from './pop-ups/edit-match-pop-up/edit-match-
     AddPlayerPopUpComponent,
     MatchManagmentComponent,
     NewMatchPopUpComponent,
-    EditMatchPopUpComponent
+    EditMatchPopUpComponent,
+    MyMatchesComponent,
+    FinishedMatchesComponent,
+    InputMatchResultPopUpComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,24 @@
+<div class="main">
+    <div class="content firstTab">
+        <h1>Input Match Result</h1>
+    </div>
+    <form #editMatchForm="ngForm">
+    <div class="content">
+            <label for="homeTeamGoals">Home Team Goals: </label>
+            <input maxlength="2" class="text" type="text" name="homeTeamGoals" required [(ngModel)]="homeTeamGoals" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+            <br>
+            <label for="awayTeamGoals">Away Team Goals: </label>
+            <input maxlength="2" class="text" type="text" name="awayTeamGoals" required [(ngModel)]="awayTeamGoals" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+            <br>
+            <label>
+                <input type="checkbox" name="active" [(ngModel)]="isFinished">
+                Is Finished
+            </label>
+    </div>
+    <div class="content">
+        <button type="submit" (click)="onUpdateMatch()" [disabled]="editMatchForm.invalid">
+            Submit Match Result
+        </button>
+    </div>
+    </form>
+</div>
