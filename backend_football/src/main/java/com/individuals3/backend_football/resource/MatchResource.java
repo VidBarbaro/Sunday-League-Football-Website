@@ -87,6 +87,12 @@ public class MatchResource {
         return new ResponseEntity<>(matches, OK);
     }
 
+    @GetMapping("/list/{teamId}")
+    public ResponseEntity<List<Match>> getMatchesForTeam(@PathVariable("teamId") Long teamId) {
+        List<Match> matches = matchService.getMatchesForTeam(teamId);
+        return new ResponseEntity<>(matches, OK);
+    }
+
     @DeleteMapping("/delete/{matchId}")
     @PreAuthorize("hasAnyAuthority('user:delete')")
     public ResponseEntity<HttpResponse> deleteMatch(@PathVariable("matchId") Long matchId) throws IOException {

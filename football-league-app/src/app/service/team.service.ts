@@ -23,6 +23,10 @@ export class TeamService {
         return this.http.get<Team>(`${this.host}/team/managerId/${teamManagerId}`);
     }
 
+    public getTeamByPlayerId(playerId: number): Observable<Team> {
+        return this.http.get<Team>(`${this.host}/teamPlayers/playerId/${playerId}`);
+    }
+
     public getTeamByTeamName(teamName: string): Observable<Team> {
         return this.http.get<Team>(`${this.host}/team/name/${teamName}`);
     }

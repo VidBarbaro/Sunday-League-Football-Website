@@ -23,6 +23,8 @@ public interface MatchService {
 
     List<Match> getMatches();
 
+    List<Match> getMatchesForTeam(Long teamId);
+
     void deleteMatch(Long matchId) throws IOException;
 
 }

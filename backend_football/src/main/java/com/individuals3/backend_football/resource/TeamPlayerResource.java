@@ -1,8 +1,10 @@
 package com.individuals3.backend_football.resource;
 
 import com.individuals3.backend_football.domain.HttpResponse;
+import com.individuals3.backend_football.domain.Team;
 import com.individuals3.backend_football.domain.TeamPlayers;
 import com.individuals3.backend_football.domain.User;
+import com.individuals3.backend_football.exception.team.TeamNotFoundException;
 import com.individuals3.backend_football.service.TeamPlayersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,6 +45,12 @@ public class TeamPlayerResource {
     public ResponseEntity<HttpResponse> removePlayerFromTeam(@PathVariable("playerId") Long playerId) throws IOException {
         teamPlayersService.removePlayerFromTeam(playerId);
         return response(OK, PLAYER_REMOVED_FROM_TEAM_SUCCESSFULLY);
+    }
+
+    @GetMapping("/playerId/{playerId}")
+    public ResponseEntity<Team> getTeamByPlayerId(@PathVariable("playerId") Long playerId) throws TeamNotFoundException {
+        Team team = teamPlayersService.getTeamForPlayer(playerId);
+        return new ResponseEntity<>(team, OK);
     }
 
     private ResponseEntity<HttpResponse> response(HttpStatus httpStatus, String message) {

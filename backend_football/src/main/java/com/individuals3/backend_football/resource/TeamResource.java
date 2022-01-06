@@ -58,6 +58,12 @@ public class TeamResource extends ExceptionHandling {
         return new ResponseEntity<>(team, OK);
     }
 
+    @GetMapping("/playerId/{playerId}")
+    public ResponseEntity<Team> getTeamByPlayerId(@PathVariable("playerId") String playerId) throws TeamNotFoundException {
+        Team team = teamService.findTeamByTeamManagerId(playerId);
+        return new ResponseEntity<>(team, OK);
+    }
+
     @PostMapping("/add")
     @PreAuthorize("hasAnyAuthority('team:add')")
     public ResponseEntity<Team> addNewTeam(@RequestParam("teamName") String teamName,
@@ -88,8 +94,6 @@ public class TeamResource extends ExceptionHandling {
     public byte[] getClubLogo(@PathVariable("teamName") String teamName, @PathVariable("fileName") String fileName) throws IOException {
         return Files.readAllBytes(Paths.get(TEAM_FOLDER + teamName + FORWARD_SLASH + fileName));
     }
-
-
 
     private ResponseEntity<HttpResponse> response(HttpStatus httpStatus, String message) {
         return new ResponseEntity<>(new HttpResponse(httpStatus.value(), httpStatus, httpStatus.getReasonPhrase().toUpperCase(),

@@ -4,7 +4,6 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { CustomHttpResponse } from '../model/custom-http-response';
 import { Match } from '../model/match';
-import { NgForm } from '@angular/forms';
 import { MatchDTO } from '../model/matchDTO';
 
 @Injectable({
@@ -17,6 +16,10 @@ export class MatchService {
 
   public getMatches(): Observable<Match[]> {
     return this.http.get<Match[]>(`${this.host}/match/list`);
+  }
+
+  public getMatchesForTeam(teamId: number): Observable<Match[]> {
+    return this.http.get<Match[]>(`${this.host}/match/list/${teamId}`);
   }
 
   public createNewMatch(formData: FormData): Observable<Match> {
@@ -40,6 +43,10 @@ export class MatchService {
 
   public updateMatch(formData: FormData): Observable<MatchDTO> {
     return this.http.post<MatchDTO>(`${this.host}/match/update`, formData);
+  }
+
+  public inputMatchResultOnTable(match: Match): Observable<Match> {
+    return this.http.post<Match>(`${this.host}/teamTablePosition/addPointsFromMatchResult`, match);
   }
 
   public createMatchFormData(match: MatchDTO): FormData {

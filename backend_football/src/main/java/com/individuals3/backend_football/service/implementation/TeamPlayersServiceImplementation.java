@@ -61,4 +61,10 @@ public class TeamPlayersServiceImplementation implements TeamPlayersService {
         return players;
 //        return null;
     }
+
+    @Override
+    public Team getTeamForPlayer(Long playerId) {
+        TeamPlayers teamPlayers = teamPlayersRepository.findTeamPlayersByPlayerId(userRepository.findUserById(playerId));
+        return teamPlayers.getTeamId();
+    }
 }

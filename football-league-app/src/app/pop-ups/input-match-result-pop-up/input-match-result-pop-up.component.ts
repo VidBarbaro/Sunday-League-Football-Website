@@ -19,7 +19,8 @@ import { MatchDTO } from 'src/app/model/matchDTO';
   styleUrls: ['./input-match-result-pop-up.component.css']
 })
 export class InputMatchResultPopUpComponent implements OnInit {
-  public match: MatchDTO;
+  public match: Match;
+  public matchDTO: MatchDTO;
   public teams: Team[];
   public referees: User[];
   public matchId: string;
@@ -36,6 +37,7 @@ export class InputMatchResultPopUpComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {editMatch: Match}, private matchService: MatchService, private userService: UserService, private teamService: TeamService, private notificationService: NotificationService) {
     // this.match = <MatchDTO> <unknown> data.editMatch,
+    this.match = data.editMatch;
     this.matchId = data.editMatch.id.toString();
     this.homeTeam = data.editMatch.homeTeamId.name,
     this.awayTeam = data.editMatch.awayTeamId.name,
@@ -52,21 +54,32 @@ export class InputMatchResultPopUpComponent implements OnInit {
 
   public onUpdateMatch(): void {
     console.log(Number(this.matchId));
-    this.match = new MatchDTO();
+    this.matchDTO = new MatchDTO();
     
-    this.match.id = Number(this.matchId);
-    this.match.homeTeamId = this.homeTeam;
-    this.match.awayTeamId = this.awayTeam;
-    this.match.refereeId = this.referee;
-    this.match.matchDateTime = this.matchDate;
-    this.match.location = this.location;
-    this.match.homeTeamGoals = this.homeTeamGoals;
-    this.match.awayTeamGoals = this.awayTeamGoals;
-    this.match.isFinished = this.isFinished.toString();
+    this.matchDTO.id = Number(this.matchId);
+    this.matchDTO.homeTeamId = this.homeTeam;
+    this.matchDTO.awayTeamId = this.awayTeam;
+    this.matchDTO.refereeId = this.referee;
+    this.matchDTO.matchDateTime = this.matchDate;
+    this.matchDTO.location = this.location;
+    this.matchDTO.homeTeamGoals = this.homeTeamGoals;
+    this.matchDTO.awayTeamGoals = this.awayTeamGoals;
+    this.matchDTO.isFinished = this.isFinished.toString();
   
-    const formData = this.matchService.createFinishedMatchFormData(this.match);
+    const formData = this.matchService.createFinishedMatchFormData(this.matchDTO);
     this.matchService.updateMatch(formData).subscribe(      
       (response: MatchDTO) => {
+        this.sendNotification(NotificationType.SUCCESS, `Match: ${response.id} updated succesfully`);
+      },
+      (errorResponse: HttpErrorResponse) => {
+        this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+      }
+    )
+  }
+
+  public inputMatchResultOnTable(match: Match) {
+    this.matchService.inputMatchResultOnTable(match).subscribe(      
+      (response: Match) => {
         this.sendNotification(NotificationType.SUCCESS, `Match: ${response.id} result added succesfully`);
       },
       (errorResponse: HttpErrorResponse) => {

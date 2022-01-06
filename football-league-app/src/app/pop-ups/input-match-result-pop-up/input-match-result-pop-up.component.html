@@ -16,7 +16,7 @@
             </label>
     </div>
     <div class="content">
-        <button type="submit" (click)="onUpdateMatch()" [disabled]="editMatchForm.invalid">
+        <button type="submit" (click)="onUpdateMatch()" (click)="inputMatchResultOnTable(match)" [disabled]="editMatchForm.invalid">
             Submit Match Result
         </button>
     </div>

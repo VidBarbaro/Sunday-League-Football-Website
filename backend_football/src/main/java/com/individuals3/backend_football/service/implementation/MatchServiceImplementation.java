@@ -37,8 +37,10 @@ public class MatchServiceImplementation implements MatchService {
     private TeamRepository teamRepository;
 
     @Autowired
-    public MatchServiceImplementation(MatchRepository matchRepository) {
+    public MatchServiceImplementation(MatchRepository matchRepository, TeamRepository teamRepository, UserRepository userRepository) {
         this.matchRepository = matchRepository;
+        this.teamRepository = teamRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -66,6 +68,14 @@ public class MatchServiceImplementation implements MatchService {
     @Override
     public List<Match> getMatches() {
         return matchRepository.findAll();
+    }
+
+    @Override
+    public List<Match> getMatchesForTeam(Long teamId) {
+        Team team = teamRepository.findTeamById(teamId);
+        List<Match> matches = matchRepository.findMatchByHomeTeamId(team);
+        matches.addAll(matchRepository.findMatchByAwayTeamId(team));
+        return matches;
     }
 
     @Override

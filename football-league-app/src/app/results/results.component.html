@@ -1,22 +1,29 @@
 <div class="title">
-    <h1 class="mat-display-3 title">Results</h1>
+    <h1 class="mat-display-3 title" *ngIf="!allMatchesDisplay">League Results</h1>
+    <h1 class="mat-display-3 title" *ngIf="allMatchesDisplay">My Team Results</h1>
 </div>
-<mat-card *ngFor="let match of matches">
-    <div>
-        <img src="../../assets/images/logo.png" alt="">
-        <mat-card-content>{{match.homeTeam}}</mat-card-content>
-    </div>
-    <div class="score"
-    [ngClass]="{winner: match.homeGoals > match.awayGoals,
-                loser: match.homeGoals < match.awayGoals,
-                tie: match.homeGoals == match.awayGoals}">{{match.homeGoals}}</div>
-    <div><h1>:</h1></div>
-    <div class="score"
-    [ngClass]="{winner: match.homeGoals < match.awayGoals,
-        loser: match.homeGoals > match.awayGoals,
-        tie: match.homeGoals == match.awayGoals}">{{match.awayGoals}}</div>
-    <div>
-        <img src="../../assets/images/logo.png" alt="">
-        <mat-card-content>{{match.awayTeam}}</mat-card-content>
-    </div>
-</mat-card>
+<div *ngIf="userPlayer">
+    <button (click)="getMatchesForTeam(team.id)" mat-raised-button *ngIf="!allMatchesDisplay">My Team Matches</button>
+    <button (click)="getMatches()" mat-raised-button *ngIf="allMatchesDisplay">All Matches</button>
+</div>
+<div *ngFor="let match of matches">
+    <mat-card *ngIf="match.isFinished">
+        <div>
+            <img height="100" width="100" src="{{match.homeTeamId.clubLogoUrl}}">
+            <mat-card-content>{{match.homeTeamId.name}}</mat-card-content>
+        </div>
+        <div class="score"
+        [ngClass]="{winner: match.homeTeamGoals > match.awayTeamGoals,
+                    loser: match.homeTeamGoals < match.awayTeamGoals,
+                    tie: match.homeTeamGoals == match.awayTeamGoals}">{{match.homeTeamGoals}}</div>
+        <div><h1>:</h1></div>
+        <div class="score"
+        [ngClass]="{winner: match.homeTeamGoals < match.awayTeamGoals,
+            loser: match.homeTeamGoals > match.awayTeamGoals,
+            tie: match.homeTeamGoals == match.awayTeamGoals}">{{match.awayTeamGoals}}</div>
+        <div>
+            <img height="100" width="100" src="{{match.awayTeamId.clubLogoUrl}}">
+            <mat-card-content>{{match.awayTeamId.name}}</mat-card-content>
+        </div>
+    </mat-card>
+</div>
