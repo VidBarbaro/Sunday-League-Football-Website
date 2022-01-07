@@ -2,44 +2,27 @@
   <h1 class="mat-display-3 title">Standings</h1>
 </div>
 
-<table mat-table [dataSource]="dataSource" matSort class="table">
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-  
-    <!-- Club Column -->
-    <ng-container matColumnDef="club">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Club </th>
-      <td mat-cell *matCellDef="let element"> {{element.club}} </td>
-    </ng-container>
-  
-    <!-- Wins Column -->
-    <ng-container matColumnDef="wins">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Wins </th>
-      <td mat-cell *matCellDef="let element"> {{element.wins}} </td>
-    </ng-container>
-  
-    <!-- Draws Column -->
-    <ng-container matColumnDef="draws">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Draws </th>
-      <td mat-cell *matCellDef="let element"> {{element.draws}} </td>
-    </ng-container>
-
-    <!-- Loses Column -->
-    <ng-container matColumnDef="loses">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Loses </th>
-      <td mat-cell *matCellDef="let element"> {{element.loses}} </td>
-    </ng-container>
-
-    <!-- Points Column -->
-    <ng-container matColumnDef="points">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Points </th>
-      <td mat-cell *matCellDef="let element"> {{element.points}} </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+<table>
+  <thead>
+    <th>Position</th>
+    <th>Club</th>
+    <th>W</th>
+    <th>L</th>
+    <th>D</th>
+    <th>GF</th>
+    <th>GA</th>
+    <th>GD</th>
+    <th>Points</th>
+  </thead>
+  <tbody *ngFor="let row of leagueTable; let i=index">
+    <td>{{i + 1}}</td>
+    <td>{{row.teamId.name}}</td>
+    <td>{{row.wins}}</td>
+    <td>{{row.loses}}</td>
+    <td>{{row.draws}}</td>
+    <td>{{row.goalsFor}}</td>
+    <td>{{row.goalsAgainst}}</td>
+    <td>{{row.goalsFor - row.goalsAgainst}}</td>
+    <td>{{row.points}}</td>
+  </tbody>
+</table>

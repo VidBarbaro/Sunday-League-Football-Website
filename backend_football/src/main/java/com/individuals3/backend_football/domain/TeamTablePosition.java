@@ -18,17 +18,36 @@ public class TeamTablePosition {
     @Column(name = "points")
     private int points;
 
-    public TeamTablePosition() { }
+    @Column(name = "wins")
+    private int wins;
 
-    public TeamTablePosition(Long id, Team teamId, int points) {
-        this.id = id;
-        this.teamId = teamId;
-        this.points = points;
-    }
+    @Column(name = "loses")
+    private int loses;
+
+    @Column(name = "draws")
+    private int draws;
+
+    @Column(name = "goalsFor")
+    private int goalsFor;
+
+    @Column(name = "goalsAgainst")
+    private int goalsAgainst;
+
+    public TeamTablePosition() { }
 
     public void addPoints(int points) {
         this.points += points;
     }
+
+    public void addGoalsFor(int goals) { this.goalsFor += goals; }
+
+    public void addGoalsAgainst(int goals) { this.goalsAgainst += goals; }
+
+    public void addWin() { this.wins += 1; }
+
+    public void addLoss() { this.loses += 1; }
+
+    public void addDraw() { this.draws += 1; }
 
     public Long getId() {
         return id;
@@ -52,5 +71,45 @@ public class TeamTablePosition {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public int getLoses() {
+        return loses;
+    }
+
+    public void setLoses(int loses) {
+        this.loses = loses;
+    }
+
+    public int getDraws() {
+        return draws;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
+
+    public int getGoalsFor() {
+        return goalsFor;
+    }
+
+    public void setGoalsFor(int goalsFor) {
+        this.goalsFor = goalsFor;
+    }
+
+    public int getGoalsAgainst() {
+        return goalsAgainst;
+    }
+
+    public void setGoalsAgainst(int goalsAgainst) {
+        this.goalsAgainst = goalsAgainst;
     }
 }

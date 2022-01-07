@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type-enum';
@@ -18,7 +18,7 @@ import { MatchDTO } from 'src/app/model/matchDTO';
   templateUrl: './input-match-result-pop-up.component.html',
   styleUrls: ['./input-match-result-pop-up.component.css']
 })
-export class InputMatchResultPopUpComponent implements OnInit {
+export class InputMatchResultPopUpComponent implements OnInit, OnDestroy {
   public match: Match;
   public matchDTO: MatchDTO;
   public teams: Team[];
@@ -77,13 +77,11 @@ export class InputMatchResultPopUpComponent implements OnInit {
     )
   }
 
-  public inputMatchResultOnTable(match: Match) {
-    this.matchService.inputMatchResultOnTable(match).subscribe(      
+  public addPointsFromMatchResult(match: Match) {
+    this.matchService.addPointsFromMatchResult(match.id).subscribe(      
       (response: Match) => {
-        this.sendNotification(NotificationType.SUCCESS, `Match: ${response.id} result added succesfully`);
       },
       (errorResponse: HttpErrorResponse) => {
-        this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
       }
     )
   }
@@ -94,6 +92,10 @@ export class InputMatchResultPopUpComponent implements OnInit {
     } else {
       this.notificationService.notify(notificationType, 'An error occurred. Please try again.');
     }
+  }
+
+  ngOnDestroy(): void {
+      this.addPointsFromMatchResult(this.match);
   }
 
 

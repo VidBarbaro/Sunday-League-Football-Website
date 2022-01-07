@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CustomHttpResponse } from '../model/custom-http-response';
 import { Match } from '../model/match';
 import { MatchDTO } from '../model/matchDTO';
+import { TeamTablePosition } from '../model/teamTablePosition';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,16 @@ export class MatchService {
     return this.http.get<Match[]>(`${this.host}/match/list/${teamId}`);
   }
 
+  public getLeagueTable(): Observable<TeamTablePosition[]> {
+    return this.http.get<TeamTablePosition[]>(`${this.host}/teamTablePosition/list`);
+  }
+
   public createNewMatch(formData: FormData): Observable<Match> {
     return this.http.post<Match>(`${this.host}/match/createMatch`, formData);
+  }
+
+  public addPointsFromMatchResult(matchId: number): Observable<Match> {
+    return this.http.post<Match>(`${this.host}/teamTablePosition/addPointsFromMatchResult`, matchId);
   }
 
   public addMatchesToLocalCache(matches: Match[]): void {
@@ -43,10 +52,6 @@ export class MatchService {
 
   public updateMatch(formData: FormData): Observable<MatchDTO> {
     return this.http.post<MatchDTO>(`${this.host}/match/update`, formData);
-  }
-
-  public inputMatchResultOnTable(match: Match): Observable<Match> {
-    return this.http.post<Match>(`${this.host}/teamTablePosition/addPointsFromMatchResult`, match);
   }
 
   public createMatchFormData(match: MatchDTO): FormData {

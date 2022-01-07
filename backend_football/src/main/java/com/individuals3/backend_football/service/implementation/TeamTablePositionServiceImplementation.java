@@ -34,40 +34,66 @@ public class TeamTablePositionServiceImplementation implements TeamTablePosition
 
     @Override
     public List<TeamTablePosition> getAllTeamTablePositions() {
-        return this.teamTablePositionRepository.findAll();
+        return this.teamTablePositionRepository.findAllByOrderByPointsDesc();
     }
 
     @Override
     public TeamTablePosition addTeamToLeagueTable(TeamTablePosition teamTablePosition) {
         teamTablePosition.setPoints(0);
+        teamTablePosition.setWins(0);
+        teamTablePosition.setLoses(0);
+        teamTablePosition.setDraws(0);
+        teamTablePosition.setGoalsFor(0);
+        teamTablePosition.setGoalsAgainst(0);
         teamTablePositionRepository.save(teamTablePosition);
         return teamTablePosition;
     }
 
     @Override
-    public String addPointsFromMatchResult(Match match) {
+    public String addInfoFromMatchResult(Match match) {
         int homeTeamGoals = match.getHomeTeamGoals();
         int awayTeamGoals = match.getAwayTeamGoals();
-        TeamTablePosition homeTeamTablePosition;
-        TeamTablePosition awayTeamTablePosition;
+
         if(homeTeamGoals > awayTeamGoals) {
-             homeTeamTablePosition =  teamTablePositionRepository.findTeamTablePositionByTeamId(match.getHomeTeamId());
-             homeTeamTablePosition.addPoints(WIN_POINTS);
-             teamTablePositionRepository.save(homeTeamTablePosition);
-             return HOME_TEAM_WIN;
+            TeamTablePosition homeTeamTablePosition =  teamTablePositionRepository.findTeamTablePositionByTeamId(match.getHomeTeamId());
+            homeTeamTablePosition.addPoints(WIN_POINTS);
+            homeTeamTablePosition.addWin();
+            homeTeamTablePosition.addGoalsFor(match.getHomeTeamGoals());
+            homeTeamTablePosition.addGoalsAgainst(match.getAwayTeamGoals());
+            teamTablePositionRepository.save(homeTeamTablePosition);
+            TeamTablePosition awayTeamTablePosition =  teamTablePositionRepository.findTeamTablePositionByTeamId(match.getAwayTeamId());
+            awayTeamTablePosition.addLoss();
+            awayTeamTablePosition.addGoalsFor(match.getAwayTeamGoals());
+            awayTeamTablePosition.addGoalsAgainst(match.getHomeTeamGoals());
+            teamTablePositionRepository.save(awayTeamTablePosition);
+            return HOME_TEAM_WIN;
         }
         else if(homeTeamGoals < awayTeamGoals) {
-            awayTeamTablePosition =  teamTablePositionRepository.findTeamTablePositionByTeamId(match.getAwayTeamId());
+            TeamTablePosition awayTeamTablePosition =  teamTablePositionRepository.findTeamTablePositionByTeamId(match.getAwayTeamId());
             awayTeamTablePosition.addPoints(WIN_POINTS);
+            awayTeamTablePosition.addWin();
+            awayTeamTablePosition.addGoalsFor(match.getAwayTeamGoals());
+            awayTeamTablePosition.addGoalsAgainst(match.getHomeTeamGoals());
             teamTablePositionRepository.save(awayTeamTablePosition);
+            TeamTablePosition homeTeamTablePosition =  teamTablePositionRepository.findTeamTablePositionByTeamId(match.getHomeTeamId());
+            homeTeamTablePosition.addLoss();
+            homeTeamTablePosition.addGoalsFor(match.getHomeTeamGoals());
+            homeTeamTablePosition.addGoalsAgainst(match.getAwayTeamGoals());
+            teamTablePositionRepository.save(homeTeamTablePosition);
             return AWAY_TEAM_WIN;
         }
         else {
-            homeTeamTablePosition =  teamTablePositionRepository.findTeamTablePositionByTeamId(match.getHomeTeamId());
+            TeamTablePosition homeTeamTablePosition =  teamTablePositionRepository.findTeamTablePositionByTeamId(match.getHomeTeamId());
             homeTeamTablePosition.addPoints(DRAW_POINTS);
+            homeTeamTablePosition.addDraw();
+            homeTeamTablePosition.addGoalsFor(match.getHomeTeamGoals());
+            homeTeamTablePosition.addGoalsAgainst(match.getAwayTeamGoals());
             teamTablePositionRepository.save(homeTeamTablePosition);
-            awayTeamTablePosition =  teamTablePositionRepository.findTeamTablePositionByTeamId(match.getAwayTeamId());
+            TeamTablePosition awayTeamTablePosition =  teamTablePositionRepository.findTeamTablePositionByTeamId(match.getAwayTeamId());
             awayTeamTablePosition.addPoints(DRAW_POINTS);
+            awayTeamTablePosition.addDraw();
+            awayTeamTablePosition.addGoalsFor(match.getAwayTeamGoals());
+            awayTeamTablePosition.addGoalsAgainst(match.getHomeTeamGoals());
             teamTablePositionRepository.save(awayTeamTablePosition);
             return MATCH_DRAW;
         }

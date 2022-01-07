@@ -11,5 +11,5 @@ public interface TeamTablePositionService {
 
     TeamTablePosition addTeamToLeagueTable(TeamTablePosition teamTablePosition);
 
-    String addPointsFromMatchResult(Match match);
+    String addInfoFromMatchResult(Match match);
 }
