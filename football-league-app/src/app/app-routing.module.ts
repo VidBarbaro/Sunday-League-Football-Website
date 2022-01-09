@@ -5,6 +5,7 @@ import { ManagersComponent } from './admin/managers/managers.component';
 import { MatchManagmentComponent } from './admin/match-managment/match-managment.component';
 import { PlayersComponent } from './admin/players/players.component';
 import { ResetUserPasswordComponent } from './admin/reset-user-password/reset-user-password.component';
+import { ChatComponent } from './chat/chat.component';
 import { Role } from './enum/role.enum';
 import { FixturesComponent } from './fixtures/fixtures.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
@@ -94,6 +95,10 @@ const routes: Routes = [
       component: FinishedMatchesComponent
     }
   ]
+  },
+  {
+    path: 'chat', 
+    component: ChatComponent
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 

@@ -54,6 +54,7 @@ import { EditMatchPopUpComponent } from './pop-ups/edit-match-pop-up/edit-match-
 import { MyMatchesComponent } from './referee/my-matches/my-matches.component';
 import { FinishedMatchesComponent } from './referee/finished-matches/finished-matches.component';
 import { InputMatchResultPopUpComponent } from './pop-ups/input-match-result-pop-up/input-match-result-pop-up.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { InputMatchResultPopUpComponent } from './pop-ups/input-match-result-pop
     EditMatchPopUpComponent,
     MyMatchesComponent,
     FinishedMatchesComponent,
-    InputMatchResultPopUpComponent
+    InputMatchResultPopUpComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
