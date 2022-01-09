@@ -25,15 +25,16 @@ build-job:
     - mvn clean package
     - echo "Completed building"
 
-# test-job:
-#   stage: test
-#   script: 
-#     - mvn clean package
-#     - echo "Successfullt passed unit tests"
-#   artifacts: 
-#     when: always
-#     reports:
-#       junit:
+test-job:
+  stage: test
+  script: 
+    - cd backend_football
+    - mvn clean package
+    - echo "Successfullt passed unit tests"
+  artifacts: 
+    when: always
+    reports:
+      junit:
 
 # build-job:       # This job runs in the build stage, which runs first.
 #   stage: build
