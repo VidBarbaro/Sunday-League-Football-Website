@@ -29,6 +29,8 @@ export class LeagueTableComponent implements OnInit {
       this.matchService.getLeagueTable().subscribe(
         (response: TeamTablePosition[]) => {
           this.leagueTable = response;
+          console.log(this.leagueTable);
+          
           if (this.sendNotification) {
             this.sendNotification(NotificationType.SUCCESS, `Table loaded successfully.`);
           }

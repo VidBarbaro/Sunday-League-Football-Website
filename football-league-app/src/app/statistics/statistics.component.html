@@ -4,13 +4,13 @@
 
 <div class="container">
     <div class="box">
-        <h1>Goals Scored</h1>
-        <div echarts [autoResize]="true" [options]="goals" class="box"></div>
+        <h1>Teams with most goals scored in 1 match</h1>
+        <div echarts [autoResize]="true" [options]="matchesMostGoals" class="box"></div>
     </div>
 
     <div class="box">
-        <h1>Goals Assisted</h1>
-        <div echarts [autoResize]="true" [options]="assists" class="box"></div>
+        <h1>Teams with most goals score in home matches</h1>
+        <div echarts [autoResize]="true" [options]="top3HomeTeamsGoals" class="box"></div>
     </div>
 </div>
 
@@ -21,14 +21,7 @@
     </div>
 
     <div class="box">
-        <h1>Goals vs Miss scenarios</h1>
-        <div echarts [options]="goalvMiss" class="box"></div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="box">
-        <h1>Transfers</h1>
-        <div echarts [options]="transferNumbers" class="box"></div>
+        <h1>Teams with most goals score in away matches</h1>
+        <div echarts [autoResize]="true" [options]="top3AwayTeamsGoals" class="box"></div>
     </div>
 </div>
