@@ -16,31 +16,37 @@ import { ChatService } from '../service/chat.service';
 
 export class ChatComponent implements OnInit {
 
-  constructor(
-    private changeDetection: ChangeDetectorRef
-  ) { }
+  private authService: AuthenticationService;
 
-  @Input() message1: string;
+  constructor(authService: AuthenticationService) { this.authService = authService; }
+
   stompClient: Stomp.Client;
-  chatMessage: ChatMessage = null;
-  chatMessages: Array<any> = [];
-  chatDisplay: Array<ChatMessage> = [];
+  msgToSend: string = "Enter your message here";
+  chatMessages: String[] = []; 
+  display: String[] = []; 
+  // chatDisplay: ChatMessage[] = []; 
 
   ngOnInit(): void {
     this.connect();
-    this.chatMessage = new ChatMessage()
   }
 
   public connect(): void {
-    let socket = SockJS(environment.apiUrl + "/wsc");
+    let socket = SockJS(environment.apiUrl + "/ws");
     let stompClient = Stomp.over(socket);
     stompClient.connect({}, () => {
       // subscribe to the backend
-      stompClient.subscribe('/topic/public', (data) => {
-          this.onMessageReceived(data);
+      stompClient.subscribe('/topic/greetings', (data) => {
 
-          this.chatMessages.push(JSON.parse(data.body));
-          this.chatDisplay = this.chatMessages;
+          console.log(JSON.parse(data.body));
+          var message = JSON.parse(data.body);
+          this.chatMessages.push(message.name);
+          console.log(this.chatMessages);
+          
+          this.onMessageReceived(data);
+          this.display = this.chatMessages;
+          // console.log(this.chatDisplay);
+          
+
       });
   });
   this.stompClient = stompClient;
@@ -52,13 +58,14 @@ export class ChatComponent implements OnInit {
 
 
   public send() {
-    this.stompClient.send("/app/chat.send", {}, JSON.stringify({ 'content': this.chatMessage.message, 'username': this.chatMessage.username }));
-    this.chatMessages.push(this.chatMessage.message); //this is to add it to the list of messages to be displayed
-    this.chatDisplay = this.chatMessages;
+    this.stompClient.send("/app/hello", {}, JSON.stringify({'username': this.authService.getUserFromLocalCache().username, 'name': this.msgToSend}));
+    // this.chatMessages.push(this.msgToSend);
+    console.log(this.chatMessages);
+    
+    // this.chatDisplay = this.chatMessages;
   }
 
-  public setChatMessage() {
-    this.chatMessage.message = this.message1;
+  public setSendMessage(value: string) {
+    this.msgToSend = value;
   }
-
 }

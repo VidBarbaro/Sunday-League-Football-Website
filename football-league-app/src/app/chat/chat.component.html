@@ -5,17 +5,16 @@
 
     <div className='chatMessageContainer'> -->
         <!-- {//loop through the chatDisplay -->
-        <div *ngFor="let item of chatDisplay" class='singleMessageContainer'> -->
-            <h4>Username: {{item.username}}</h4>
-            <p>{{item.message}}</p>
+        <div *ngFor="let item of display" class='singleMessageContainer'> -->
+            <h4>Anonymus: </h4>
+            <p>{{item}}</p>
         </div>
 
+    <div className='chatMessageContainer'> -->
+        <!-- {//loop through the chatDisplay -->
         <div className='chatMessageActions'>
-            <input className='chatMessageInput' (ngModelChange)="setChatMessage()" [ngModel]="message1" (ngModelChange)="message1=$event" placeholder='Type your message here...'>
-            
-
+            <input className='chatMessageInput' ngModel (ngModelChange)="setSendMessage($event)" placeholder='Type your message here...'>
             <button className='buttonSendChatMessage userAddButton' (click)="send()">Send Message</button>
-
         </div>
     </div>
 </div>

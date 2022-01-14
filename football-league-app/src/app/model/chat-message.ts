@@ -2,7 +2,6 @@ import { AuthenticationService } from "../service/authentication.service";
 
 export class ChatMessage {
 
-    public username: string;
     public _message: string;
 
     constructor() {
