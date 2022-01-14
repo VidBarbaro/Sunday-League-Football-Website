@@ -1,20 +1,20 @@
-<div className="home">
-    <div className="userTitleContainer">
-        <h1>Personal Chat</h1>
-    </div>
-
-    <div className='chatMessageContainer'> -->
-        <!-- {//loop through the chatDisplay -->
-        <div *ngFor="let item of display" class='singleMessageContainer'> -->
-            <h4>Anonymus: </h4>
-            <p>{{item}}</p>
-        </div>
-
-    <div className='chatMessageContainer'> -->
-        <!-- {//loop through the chatDisplay -->
-        <div className='chatMessageActions'>
-            <input className='chatMessageInput' ngModel (ngModelChange)="setSendMessage($event)" placeholder='Type your message here...'>
-            <button className='buttonSendChatMessage userAddButton' (click)="send()">Send Message</button>
-        </div>
-    </div>
+<div class="title">
+    <h1 class="mat-display-3 title">ChatRoom</h1>
 </div>
+<mat-card>
+    <div className="home">
+        <div className='chatMessageContainer'> -->
+            <!-- {//loop through the chatDisplay -->
+            <div *ngFor="let item of display" class='singleMessageContainer'>
+                <h4>User: {{item.username}}</h4>
+                <p>Message: {{item.name}}</p>
+            </div>
+    
+        <div className='chatMessageContainer'> -->
+            <!-- {//loop through the chatDisplay -->
+            <div className='chatMessageActions'>
+                <input matInput ngModel (ngModelChange)="setSendMessage($event)" placeholder='Type your message here...'>
+                <button mat-raised-button (click)="send()">Send Message</button>
+            </div>
+        </div>
+    </div>

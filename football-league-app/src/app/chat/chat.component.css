@@ -1,5 +1,5 @@
  .chatMessageContainer{
-    width: 90%;
+    width: 70%;
     height: 500px;
     margin: 30px;
     background-color: rgb(224, 224, 224);
@@ -28,7 +28,35 @@
 }
 
 .singleMessageContainer{
-    background-color: rgb(190, 217, 252);
+    background-color: lightgreen;
     margin-top: 2px; 
     /* padding: 10px 0; */
+}
+
+mat-card {
+    margin-top: 5%;
+    margin-left: 25%;
+    width: 50%;
+}
+
+input {
+    width: 70%;
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin: 2%;
+    margin-top: 1%;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+}
+
+input:focus{
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+}
+
+.title {
+    margin: 3% auto;
+    text-align: center;
 }

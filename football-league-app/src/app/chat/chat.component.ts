@@ -9,8 +9,7 @@ import { ChatService } from '../service/chat.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default
+  styleUrls: ['./chat.component.css']
 })
 
 
@@ -22,8 +21,8 @@ export class ChatComponent implements OnInit {
 
   stompClient: Stomp.Client;
   msgToSend: string = "Enter your message here";
-  chatMessages: String[] = []; 
-  display: String[] = []; 
+  chatMessages: any[] = []; 
+  display: ChatMessage[] = []; 
   // chatDisplay: ChatMessage[] = []; 
 
   ngOnInit(): void {
@@ -39,7 +38,7 @@ export class ChatComponent implements OnInit {
 
           console.log(JSON.parse(data.body));
           var message = JSON.parse(data.body);
-          this.chatMessages.push(message.name);
+          this.chatMessages.push(message);
           console.log(this.chatMessages);
           
           this.onMessageReceived(data);
