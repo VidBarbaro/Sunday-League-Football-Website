@@ -1,3 +1,34 @@
-#main-content {
-    margin: 10%;
+ .chatMessageContainer{
+    width: 90%;
+    height: 500px;
+    margin: 30px;
+    background-color: rgb(224, 224, 224);
+    position: relative;
+    overflow: scroll;
+}
+
+
+.chatMessageActions{
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    border: 1px solid grey;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.buttonSendChatMessage{
+    position: absolute;
+    right: 0;
+}
+
+.chatMessageInput{
+    width: 85%;
+    height: 40px;
+}
+
+.singleMessageContainer{
+    background-color: rgb(190, 217, 252);
+    margin-top: 2px; 
+    /* padding: 10px 0; */
 }
