@@ -1,15 +1,13 @@
 package com.individuals3.backend_football.resource;
 
-import com.individuals3.backend_football.domain.HttpResponse;
-import com.individuals3.backend_football.domain.Match;
-import com.individuals3.backend_football.domain.Team;
-import com.individuals3.backend_football.domain.User;
+import com.individuals3.backend_football.domain.*;
 import com.individuals3.backend_football.exception.domain.*;
 import com.individuals3.backend_football.exception.team.ManagerAlreadyHasTeamException;
 import com.individuals3.backend_football.exception.team.TeamNameExistsException;
 import com.individuals3.backend_football.exception.team.TeamNotFoundException;
 import com.individuals3.backend_football.repository.TeamRepository;
 import com.individuals3.backend_football.service.TeamService;
+import com.individuals3.backend_football.service.TeamTablePositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

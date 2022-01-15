@@ -47,7 +47,7 @@ export class NewMatchPopUpComponent implements OnInit {
     this.matchService.createNewMatch(formData).subscribe(
       (response: Match) => {
         matchForm.reset();
-        this.sendNotification(NotificationType.SUCCESS, `Match: ${response.homeTeamId} vs ${response.awayTeamId} added succesfully`);
+        this.sendNotification(NotificationType.SUCCESS, `Match: ${response.homeTeamId.name} vs ${response.awayTeamId.name} added succesfully`);
       },
       (errorResponse: HttpErrorResponse) => {
         this.sendNotification(NotificationType.ERROR, errorResponse.error.message);

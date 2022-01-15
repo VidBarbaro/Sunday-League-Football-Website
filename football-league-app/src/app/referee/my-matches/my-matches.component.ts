@@ -6,6 +6,7 @@ import { NotificationType } from 'src/app/enum/notification-type-enum';
 import { Match } from 'src/app/model/match';
 import { EditMatchPopUpComponent } from 'src/app/pop-ups/edit-match-pop-up/edit-match-pop-up.component';
 import { InputMatchResultPopUpComponent } from 'src/app/pop-ups/input-match-result-pop-up/input-match-result-pop-up.component';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 import { MatchService } from 'src/app/service/match.service';
 import { NotificationService } from 'src/app/service/notification.service';
 
@@ -18,7 +19,7 @@ export class MyMatchesComponent implements OnInit {
   public subscriptions: Subscription[] = [];
   public matches: Match[] = null;
 
-  constructor(private matchService: MatchService, private notificationService: NotificationService, private dialogRef: MatDialog) { }
+  constructor(private matchService: MatchService, private notificationService: NotificationService, private dialogRef: MatDialog, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.getRefereeMatches();
@@ -26,7 +27,7 @@ export class MyMatchesComponent implements OnInit {
 
   public getRefereeMatches(): void {
     this.subscriptions.push(
-      this.matchService.getMatches().subscribe(
+      this.matchService.getMatchesForReferee(this.authService.getUserFromLocalCache().id).subscribe(
         (response: Match[]) => {
           this.matchService.addMatchesToLocalCache(response);
           this.matches = response;

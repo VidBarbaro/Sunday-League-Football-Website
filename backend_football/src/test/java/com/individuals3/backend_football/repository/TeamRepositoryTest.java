@@ -24,11 +24,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureMockMvc
 class TeamRepositoryTest {
 
-    public static final Long TEAM_ID = 10L;
-    public static final String TEAM_NAME = "NK Rovinj";
-    public static final String TEAM_STRING_ID = "1821115926";
-    public static final String TEAM_IMAGE_URL = "http://localhost:8081/team/image/NK%20Rovinj/NK%20Rovinj.jpg";
-    public static final String TEAM_MANAGER_ID = "8694608103";
+    public static final Long TEAM_ID = 26L;
+    public static final String TEAM_NAME = "Arsenal";
+    public static final String TEAM_STRING_ID = "8355164658";
+    public static final String TEAM_IMAGE_URL = "http://localhost:8081/team/image/Arsenal/Arsenal.jpg";
+    public static final String TEAM_MANAGER_ID = "0001994063";
 
     @Autowired
     private TeamRepository teamRepository;

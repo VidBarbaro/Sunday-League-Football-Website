@@ -79,6 +79,13 @@ public class MatchServiceImplementation implements MatchService {
     }
 
     @Override
+    public List<Match> getMatchesForReferee(Long refereeId) {
+        User referee = userRepository.findUserById(refereeId);
+        List<Match> matches = matchRepository.findMatchByRefereeId(referee);
+        return matches;
+    }
+
+    @Override
     public void deleteMatch(Long matchId) throws IOException {
         Match match = matchRepository.findMatchById(matchId);
         matchRepository.deleteById(match.getId());

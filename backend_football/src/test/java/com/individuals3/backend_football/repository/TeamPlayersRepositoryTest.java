@@ -23,9 +23,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureMockMvc
 class TeamPlayersRepositoryTest {
 
-    public static final Long TEAM_PLAYER_ID = 2L;
-    public static final Long PLAYER_ID = 8L;
-    public static final Long TEAM_ID = 10L;
+    public static final Long TEAM_PLAYER_ID = 1L;
+    public static final Long PLAYER_ID = 12L;
+    public static final Long TEAM_ID = 26L;
 
     @Autowired
     private TeamPlayersRepository teamPlayersRepository;
@@ -49,7 +49,7 @@ class TeamPlayersRepositoryTest {
     void findTeamPlayersByTeamId() {
         Team team = teamRepository.findTeamById(TEAM_ID);
         TeamPlayers[] teamPlayers = teamPlayersRepository.findTeamPlayersByTeamId(team);
-        Assert.assertEquals(1, teamPlayers.length);
+        Assert.assertEquals(2, teamPlayers.length);
     }
 
     @Test

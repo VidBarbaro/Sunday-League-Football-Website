@@ -25,6 +25,8 @@ public interface MatchService {
 
     List<Match> getMatchesForTeam(Long teamId);
 
+    List<Match> getMatchesForReferee(Long refereeId);
+
     void deleteMatch(Long matchId) throws IOException;
 
 }

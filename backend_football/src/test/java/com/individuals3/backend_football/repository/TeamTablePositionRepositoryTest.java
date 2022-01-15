@@ -23,14 +23,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureMockMvc
 class TeamTablePositionRepositoryTest {
 
-    public static final Long ID = 9L;
-    public static final int POINTS = 3;
-    public static final Long TEAM_ID = 10L;
-    public static final int WINS = 1;
-    public static final int LOSES = 2;
+    public static final Long ID = 1L;
+    public static final int POINTS = 0;
+    public static final Long TEAM_ID = 26L;
+    public static final int WINS = 0;
+    public static final int LOSES = 1;
     public static final int DRAWS = 0;
-    public static final int GOALS_FOR = 5;
-    public static final int GOALS_AGAINST = 9;
+    public static final int GOALS_FOR = 1;
+    public static final int GOALS_AGAINST = 2;
 
     @Autowired
     private TeamRepository teamRepository;
@@ -50,7 +50,7 @@ class TeamTablePositionRepositoryTest {
     @Transactional
     void findAllByOrderByPointsDesc() {
         List<TeamTablePosition> teamTablePositions = teamTablePositionRepository.findAllByOrderByPointsDesc();
-        Assert.assertEquals(8, teamTablePositions.size());
+        Assert.assertEquals(7, teamTablePositions.size());
     }
 
     @Test

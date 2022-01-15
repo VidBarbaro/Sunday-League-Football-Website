@@ -23,6 +23,10 @@ export class MatchService {
     return this.http.get<Match[]>(`${this.host}/match/list/${teamId}`);
   }
 
+  public getMatchesForReferee(refereeId: number): Observable<Match[]> {
+    return this.http.get<Match[]>(`${this.host}/match/list/referee/${refereeId}`);
+  }
+
   public getLeagueTable(): Observable<TeamTablePosition[]> {
     return this.http.get<TeamTablePosition[]>(`${this.host}/teamTablePosition/list`);
   }
@@ -57,7 +61,6 @@ export class MatchService {
   public createMatchFormData(match: MatchDTO): FormData {
     const formData = new FormData();
     var datestr = (new Date(match.matchDateTime)).toISOString();
-    alert(match.homeTeamId);
     formData.append('homeTeamId', match.homeTeamId);
     formData.append('awayTeamId', match.awayTeamId);
     formData.append('refereeId', match.refereeId);
@@ -69,7 +72,6 @@ export class MatchService {
   public createFinishedMatchFormData(match: MatchDTO): FormData {
     const formData = new FormData();
     var datestr = (new Date(match.matchDateTime)).toISOString();
-    alert(match.homeTeamId);
     formData.append('matchId', match.id.toString());
     formData.append('homeTeamId', match.homeTeamId);
     formData.append('awayTeamId', match.awayTeamId);

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type-enum';
 import { Match } from 'src/app/model/match';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 import { MatchService } from 'src/app/service/match.service';
 import { NotificationService } from 'src/app/service/notification.service';
 
@@ -15,7 +16,7 @@ export class FinishedMatchesComponent implements OnInit {
   public subscriptions: Subscription[] = [];
   public matches: Match[] = null;
 
-  constructor(private matchService: MatchService, private notificationService: NotificationService) { }
+  constructor(private matchService: MatchService, private notificationService: NotificationService, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.getRefereeMatches();
@@ -23,7 +24,7 @@ export class FinishedMatchesComponent implements OnInit {
 
   public getRefereeMatches(): void {
     this.subscriptions.push(
-      this.matchService.getMatches().subscribe(
+      this.matchService.getMatchesForReferee(this.authService.getUserFromLocalCache().id).subscribe(
         (response: Match[]) => {
           this.matchService.addMatchesToLocalCache(response);
           this.matches = response;

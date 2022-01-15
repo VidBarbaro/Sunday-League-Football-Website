@@ -24,14 +24,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureMockMvc
 class MatchRepositoryTest {
 
-    public static final Long MATCH_ID = 26L;
-    public static final String MATCH_LOCATION = "Rovinj Stadium";
-    public static final Long AWAY_TEAM_ID = 12L;
-    public static final Long HOME_TEAM_ID = 10L;
-    public static final Long REFEREE_ID = 9L;
-    public static final int AWAY_TEAM_GOALS = 0;
-    public static final int HOME_TEAM_GOALS = 0;
-    public static final boolean IS_FINISHED = false;
+    public static final Long MATCH_ID = 1L;
+    public static final String MATCH_LOCATION = "London";
+    public static final Long AWAY_TEAM_ID = 27L;
+    public static final Long HOME_TEAM_ID = 26L;
+    public static final Long REFEREE_ID = 10L;
+    public static final int AWAY_TEAM_GOALS = 2;
+    public static final int HOME_TEAM_GOALS = 1;
+    public static final boolean IS_FINISHED = true;
 
     @Autowired
     private MatchRepository matchRepository;

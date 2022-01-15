@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureMockMvc
 class UserRepositoryTest {
 
-    public static final Long USER_ID = 5L;
+    public static final Long USER_ID = 1L;
     public static final String USER_USERNAME = "vidbarbaro";
     public static final String USER_EMAIL= "vid.barbaro@gmail.com";
 
@@ -47,12 +47,12 @@ class UserRepositoryTest {
     void itShouldFindUserByUsername() {
         User user = userRepository.findUserByUsername(USER_USERNAME);
         Assert.assertEquals(USER_ID, user.getId());
-        Assert.assertEquals("8662835203", user.getUserId());
+        Assert.assertEquals("1596847830", user.getUserId());
         Assert.assertEquals("Vid", user.getFirstName());
         Assert.assertEquals("Barbaro", user.getLastName());
         Assert.assertEquals("vid.barbaro@gmail.com", user.getEmail());
-        Assert.assertEquals("ROLE_USER", user.getRole());
-        Assert.assertEquals(Authority.PLAYER_AUTHORITIES[0], user.getAuthorities()[0]);
+        Assert.assertEquals("ROLE_ADMIN", user.getRole());
+        Assert.assertEquals(Authority.ADMIN_AUTHORITIES[0], user.getAuthorities()[0]);
         Assert.assertEquals(true, user.isActive());
         Assert.assertEquals(true, user.isNotLocked());
     }
@@ -62,12 +62,12 @@ class UserRepositoryTest {
     void itShouldFindUserByEmail() {
         User user = userRepository.findUserByEmail(USER_EMAIL);
         Assert.assertEquals(USER_ID, user.getId());
-        Assert.assertEquals("8662835203", user.getUserId());
+        Assert.assertEquals("1596847830", user.getUserId());
         Assert.assertEquals("Vid", user.getFirstName());
         Assert.assertEquals("Barbaro", user.getLastName());
         Assert.assertEquals("vidbarbaro", user.getUsername());
-        Assert.assertEquals("ROLE_USER", user.getRole());
-        Assert.assertEquals(Authority.PLAYER_AUTHORITIES[0], user.getAuthorities()[0]);
+        Assert.assertEquals("ROLE_ADMIN", user.getRole());
+        Assert.assertEquals(Authority.ADMIN_AUTHORITIES[0], user.getAuthorities()[0]);
         Assert.assertEquals(true, user.isActive());
         Assert.assertEquals(true, user.isNotLocked());
     }
@@ -76,13 +76,13 @@ class UserRepositoryTest {
     @Transactional
     void itShouldFindUserById() {
         User user = userRepository.findUserById(USER_ID);
-        Assert.assertEquals("8662835203", user.getUserId());
+        Assert.assertEquals("1596847830", user.getUserId());
         Assert.assertEquals("Vid", user.getFirstName());
         Assert.assertEquals("Barbaro", user.getLastName());
         Assert.assertEquals("vidbarbaro", user.getUsername());
         Assert.assertEquals("vid.barbaro@gmail.com", user.getEmail());
-        Assert.assertEquals("ROLE_USER", user.getRole());
-        Assert.assertEquals(Authority.PLAYER_AUTHORITIES[0], user.getAuthorities()[0]);
+        Assert.assertEquals("ROLE_ADMIN", user.getRole());
+        Assert.assertEquals(Authority.ADMIN_AUTHORITIES[0], user.getAuthorities()[0]);
         Assert.assertEquals(true, user.isActive());
         Assert.assertEquals(true, user.isNotLocked());
     }
@@ -90,14 +90,14 @@ class UserRepositoryTest {
     @Test
     @Transactional
     void itShouldFindUserByUserId() {
-        User user = userRepository.findUserByUserId("8662835203");
+        User user = userRepository.findUserByUserId("1596847830");
         Assert.assertEquals(USER_ID, user.getId());
         Assert.assertEquals("Vid", user.getFirstName());
         Assert.assertEquals("Barbaro", user.getLastName());
         Assert.assertEquals("vidbarbaro", user.getUsername());
         Assert.assertEquals("vid.barbaro@gmail.com", user.getEmail());
-        Assert.assertEquals("ROLE_USER", user.getRole());
-        Assert.assertEquals(Authority.PLAYER_AUTHORITIES[0], user.getAuthorities()[0]);
+        Assert.assertEquals("ROLE_ADMIN", user.getRole());
+        Assert.assertEquals(Authority.ADMIN_AUTHORITIES[0], user.getAuthorities()[0]);
         Assert.assertEquals(true, user.isActive());
         Assert.assertEquals(true, user.isNotLocked());
     }
