@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,7 +65,7 @@ class TeamServiceImplementationTest {
 
     @Test
     @Transactional
-    void addNewTeam() throws TeamNameExistsException, ManagerAlreadyHasTeamException, IOException, TeamNotFoundException, NotAnImageFileException {
+    void itShouldAddNewTeam() throws TeamNameExistsException, ManagerAlreadyHasTeamException, IOException, TeamNotFoundException, NotAnImageFileException {
         Team team = teamService.addNewTeam("testName", null, "8993929421");
         Team aTeam = teamRepository.findTeamByName("testName");
         Assert.assertEquals(team, aTeam);
@@ -72,11 +73,16 @@ class TeamServiceImplementationTest {
 
     @Test
     @Transactional
-    void deleteTeam() {
+    void itShouldDeleteTeam() throws IOException {
+        teamService.deleteTeam(TEAM_NAME);
+        Team team = teamRepository.findTeamByName(TEAM_NAME);
+        Assert.assertEquals(team, null);
     }
 
     @Test
     @Transactional
-    void getTeams() {
+    void itShouldGetTeams() {
+        List<Team> allTeams = teamService.getTeams();
+        Assert.assertEquals(teamRepository.findAll(), allTeams);
     }
 }

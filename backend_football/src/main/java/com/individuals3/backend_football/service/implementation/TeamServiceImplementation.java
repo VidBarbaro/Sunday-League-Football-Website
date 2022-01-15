@@ -1,9 +1,7 @@
 package com.individuals3.backend_football.service.implementation;
 
 import com.individuals3.backend_football.constant.FileConstant;
-import com.individuals3.backend_football.domain.Team;
-import com.individuals3.backend_football.domain.User;
-import com.individuals3.backend_football.domain.UserPrincipal;
+import com.individuals3.backend_football.domain.*;
 import com.individuals3.backend_football.enumeration.Role;
 import com.individuals3.backend_football.exception.domain.EmailExistsException;
 import com.individuals3.backend_football.exception.domain.NotAnImageFileException;
@@ -12,7 +10,10 @@ import com.individuals3.backend_football.exception.domain.UsernameExistsExceptio
 import com.individuals3.backend_football.exception.team.ManagerAlreadyHasTeamException;
 import com.individuals3.backend_football.exception.team.TeamNameExistsException;
 import com.individuals3.backend_football.exception.team.TeamNotFoundException;
+import com.individuals3.backend_football.repository.MatchRepository;
+import com.individuals3.backend_football.repository.TeamPlayersRepository;
 import com.individuals3.backend_football.repository.TeamRepository;
+import com.individuals3.backend_football.repository.TeamTablePositionRepository;
 import com.individuals3.backend_football.service.EmailService;
 import com.individuals3.backend_football.service.LoginAttemptService;
 import com.individuals3.backend_football.service.TeamService;
@@ -52,6 +53,10 @@ public class TeamServiceImplementation implements TeamService {
 
     private static final String NO_TEAM_FOUND_BY_TEAM_MANAGER_ID = "No team found by team manager id ";
     private TeamRepository teamRepository;
+    private MatchServiceImplementation matchServiceImplementation;
+    private MatchRepository matchRepository;
+    private TeamPlayersRepository teamPlayersRepository;
+    private TeamTablePositionRepository teamTablePositionRepository;
     private Logger LOGGER = LoggerFactory.getLogger(getClass());
     private BCryptPasswordEncoder passwordEncoder;
     private LoginAttemptService loginAttemptService;
@@ -59,11 +64,15 @@ public class TeamServiceImplementation implements TeamService {
 
 
     @Autowired
-    public TeamServiceImplementation(TeamRepository teamRepository, BCryptPasswordEncoder passwordEncoder, LoginAttemptService loginAttemptService, EmailService emailService) {
+    public TeamServiceImplementation(TeamTablePositionRepository teamTablePositionRepository, TeamPlayersRepository teamPlayersRepository, TeamRepository teamRepository, BCryptPasswordEncoder passwordEncoder, LoginAttemptService loginAttemptService, EmailService emailService, MatchServiceImplementation matchServiceImplementation, MatchRepository matchRepository) {
         this.teamRepository = teamRepository;
         this.passwordEncoder = passwordEncoder;
         this.loginAttemptService = loginAttemptService;
         this.emailService = emailService;
+        this.matchServiceImplementation = matchServiceImplementation;
+        this.matchRepository = matchRepository;
+        this.teamPlayersRepository = teamPlayersRepository;
+        this.teamTablePositionRepository = teamTablePositionRepository;
     }
 
     @Override
@@ -95,6 +104,17 @@ public class TeamServiceImplementation implements TeamService {
         Team team = teamRepository.findTeamByName(teamName);
         Path teamFolder = Paths.get(TEAM_FOLDER + team.getName()).toAbsolutePath().normalize();
         FileUtils.deleteDirectory(new File(teamFolder.toString()));
+        List<Match> matches = matchRepository.findMatchByHomeTeamId(team);
+        matches.addAll(matchRepository.findMatchByAwayTeamId(team));
+        for (int i = 0; i < matches.size(); i++) {
+            matchServiceImplementation.deleteMatch(matches.get(i).getId());
+        }
+        TeamPlayers[] teamPlayers = teamPlayersRepository.findTeamPlayersByTeamId(team);
+        for (int i = 0; i < teamPlayers.length; i++) {
+            teamPlayersRepository.delete(teamPlayers[i]);
+        }
+        TeamTablePosition teamTablePosition = teamTablePositionRepository.findTeamTablePositionByTeamId(team);
+        teamTablePositionRepository.delete(teamTablePosition);
         teamRepository.deleteById(team.getId());
     }
 
