@@ -50,6 +50,9 @@ public class User implements Serializable {
         this.isNotLocked = isNotLocked;
     }
 
+    public User(long l, String s, String fn, String ln, String username, String pwd, String s1, String image, Date date, Date date1, Date date2, boolean b, boolean b1) {
+    }
+
     public Long getId() {
         return id;
     }
